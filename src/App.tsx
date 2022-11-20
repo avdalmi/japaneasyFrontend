@@ -1,24 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Homepage from './pages/Homepage';
+import { useEffect } from "react"
+import { useAppDispatch, useAppSelector } from './hooks';
+import { getUserWithStoredToken } from './store/user/thunks';
+import Login from "../src/pages/Login";
+import SignUp from "../src/pages/SignUp"
+import {selectAppLoading} from "./store/appState/selectors"
+import NavBar from "./components/NavBar/NavBar"
+import Loading from "./components/Loading/Loading"
+import RecipeExpPage from './pages/RecipeExpPage';
+import { fetchAllRecipesThunk} from "./store/recipes/thunks"
+import { selectRecipe } from './store/recipes/slice';
+
+
 
 function App() {
+  const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(selectAppLoading);
+
+  const recipes = useAppSelector(selectRecipe)
+
+  
+  useEffect(() => {
+    dispatch(getUserWithStoredToken());
+  }, [dispatch]);
+
+ 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      {isLoading ? <Loading /> : null}
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path="/recipes" element={<RecipeExpPage />} />
+    </Routes>
     </div>
   );
 }
