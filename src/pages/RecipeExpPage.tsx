@@ -21,7 +21,7 @@ const RecipeExpPage = () => {
             {recipes.map((recipe) =>{
              return (
                  <RecipeCard
-                     recipes={recipe} />
+                     recipe={recipe} />
              )   }
             )}
         </div>

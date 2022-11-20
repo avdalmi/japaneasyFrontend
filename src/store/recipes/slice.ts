@@ -27,7 +27,8 @@ export const recipeSlice = createSlice({
     reducers: {
         fetchAllRecipes: (state, action: PayloadAction<RecipeState>) => {
             console.log("state", state)
-            state.recipes.push(action.payload)
+            // state.recipes.push(action.payload)
+            state.recipes = [...state.recipes, ...action.payload]
             console.log("current State", current(state))
         }
     }

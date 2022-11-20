@@ -1,11 +1,11 @@
 import React from 'react'
-import { Recipe } from '../../types/Recipes';
+import {RecipeState} from "../../store/recipes/slice"
 
 interface RecipeDisplayProps {
-    recipe: Recipe[]
+    recipe: RecipeState[]
 }
 
-function RecipeCard(props: RecipeDisplayProps[] ) {
+function RecipeCard(props: RecipeDisplayProps ) {
     
     // const { id, name, categoryId, description, rating, image, difficulty, portions} = recipe
     
