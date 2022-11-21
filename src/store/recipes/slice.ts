@@ -43,15 +43,22 @@ export interface CompleteRecipeState {
     ingredients: IngredientState[],
     instructions: InstructionsState[],
 }
+export interface CategoryState {
+    name: string,
+    id: number,
+}
 
 export interface RecipeSliceState {
     recipes: RecipeState[];
     fullRecipes: CompleteRecipeState[];
+    categories: CategoryState[]
 }
+
 
 const initialState: RecipeSliceState = {
     recipes: [],
-    fullRecipes:[],
+    fullRecipes: [],
+    categories: []
 };
 
 export const recipeSlice = createSlice({
@@ -66,6 +73,11 @@ export const recipeSlice = createSlice({
         //  console.log("action", action)
           state.fullRecipes = action.payload
         //   console.log("current state", current(state))
+      },
+      fetchCategories: (state, action: PayloadAction<CategoryState[]>) => {
+        //   console.log("action", action)
+          state.categories = action.payload
+        //   console.log("current state", current(state))
       }
   }
 });
@@ -79,5 +91,9 @@ export const selectFullRecipe = (state: RootState): CompleteRecipeState[] => {
     return state.recipe.fullRecipes
 }
 
-export const { fetchAllRecipes, fetchRecipeById } = recipeSlice.actions;
+export const selectCategories = (state: RootState): CategoryState[] => {
+    //   console.log("rootstate", state.recipe)
+    return state.recipe.categories
+}
+export const { fetchAllRecipes, fetchRecipeById, fetchCategories } = recipeSlice.actions;
 export default recipeSlice.reducer;
