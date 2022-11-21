@@ -1,8 +1,12 @@
 import React from 'react'
+import CarouselComp from '../components/Carousel/Carousel'
 
 function Homepage() {
   return (
-    <div>Homepage</div>
+    <div>
+      <CarouselComp />
+
+    </div>
   )
 }
 

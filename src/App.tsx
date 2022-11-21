@@ -13,6 +13,7 @@ import Loading from "./components/Loading/Loading"
 import RecipeExpPage from './pages/RecipeExpPage';
 import { fetchAllRecipesThunk} from "./store/recipes/thunks"
 import { selectRecipe } from './store/recipes/slice';
+import RecipeDetailsPage from './pages/RecipeDetailsPage';
 
 
 
@@ -38,6 +39,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path="/recipes" element={<RecipeExpPage />} />
+        <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
     </Routes>
     </div>
   );

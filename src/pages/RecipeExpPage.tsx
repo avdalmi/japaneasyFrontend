@@ -8,18 +8,26 @@ import { fetchAllRecipesThunk } from "../store/recipes/thunks";
 const RecipeExpPage = () => {
   const dispatch = useAppDispatch();
   const recipes = useAppSelector(selectRecipe);
-  console.log("recipes", recipes);
+//   console.log("recipes", recipes);
 
   useEffect(() => {
     dispatch(fetchAllRecipesThunk());
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Recipe page</h1>
-      {recipes.map((recipe) => {
-        return <RecipeCard recipe={recipe} />;
-      })}
+      <div>
+          {!recipes
+              ? "...loading"
+              :
+              <div>
+                <h1>Recipe page</h1>
+        
+                {recipes.map((recipe) => {
+                    return <RecipeCard key={recipe.id} recipe={recipe} />;
+                })}
+              </div>
+          }
+          
     </div>
   );
 };

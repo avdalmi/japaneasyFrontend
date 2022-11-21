@@ -28,9 +28,7 @@ export default function SignUp() {
     function submitForm(event: SyntheticEvent) {
         event.preventDefault();
     
-            dispatch(signUp(firstName, lastName, email, password));
-           
-        
+        dispatch(signUp(firstName, lastName, email, password));
 
         setEmail('');
         setPassword('');
@@ -41,7 +39,11 @@ export default function SignUp() {
  
 
     return (
-        <Container
+        <div>
+        {!token
+            ? "...loading"
+            :
+            < Container
             style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -114,6 +116,9 @@ export default function SignUp() {
                     Click here to log in
                 </Link>
             </Box>
-        </Container>
+                </Container >
+                
+            }
+            </div>
     );
 }

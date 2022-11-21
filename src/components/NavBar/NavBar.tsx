@@ -6,6 +6,7 @@ import { selectToken } from '../../store/user/selectors';
 import Container from "react-bootstrap/Container"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
+import logo from "../../images/logo.jpeg"
 
 export default function NavBar() {
     const token = useSelector(selectToken);
@@ -16,7 +17,7 @@ export default function NavBar() {
             <Container>
                
                 <Navbar.Brand as={NavLink} to='/'>
-                    Japaneasy
+                    <img src={logo} alt="brand logo"/>
                 </Navbar.Brand>
                 <Navbar.Collapse id='responsive-navbar-nav'>
                     <Nav className='me-auto' style={{ width: '100%' }} fill>

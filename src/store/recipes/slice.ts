@@ -10,15 +10,48 @@ export interface RecipeState {
   rating: number;
   image: string;
   difficulty: string;
-  portions: number;
+    portions: number;
+    prefectureId: number;
+}
+
+export interface IngredientState {
+    id: number,
+    ingredientDescriptionId: number,
+    measurement: string,
+    name: string,
+    quantity: number,
+    recipeId: number
+}
+export interface InstructionsState {
+    id: number,
+    description: string,
+    recipeId: number,
+    step: number
+}
+
+export interface CompleteRecipeState {
+    id: number,
+    categoryId: number,
+    name: string,
+    description: string,
+    rating: number,
+    image: string,
+    difficulty: string,
+    portions: number,
+    prefectureId: number,
+    time: string,
+    ingredients: IngredientState[],
+    instructions: InstructionsState[],
 }
 
 export interface RecipeSliceState {
-  recipes: RecipeState[];
+    recipes: RecipeState[];
+    fullRecipes: CompleteRecipeState[];
 }
 
 const initialState: RecipeSliceState = {
-  recipes: []
+    recipes: [],
+    fullRecipes:[],
 };
 
 export const recipeSlice = createSlice({
@@ -26,10 +59,14 @@ export const recipeSlice = createSlice({
   initialState,
   reducers: {
     fetchAllRecipes: (state, action: PayloadAction<RecipeState[]>) => {
-      console.log("state", state);
-      state.recipes = [...state.recipes, ...action.payload];
-      console.log("current State", current(state));
-    }
+          state.recipes = action.payload;
+    //   console.log("current State", current(state));
+      },
+      fetchRecipeById: (state, action: PayloadAction<CompleteRecipeState[]>) => {
+        //  console.log("action", action)
+          state.fullRecipes = action.payload
+        //   console.log("current state", current(state))
+      }
   }
 });
 
@@ -37,5 +74,10 @@ export const recipeSlice = createSlice({
 export const selectRecipe = (state: RootState): RecipeState[] =>
   state.recipe.recipes;
 
-export const { fetchAllRecipes } = recipeSlice.actions;
+export const selectFullRecipe = (state: RootState): CompleteRecipeState[] => {
+    // console.log("rootstate", state.recipe)
+    return state.recipe.fullRecipes
+}
+
+export const { fetchAllRecipes, fetchRecipeById } = recipeSlice.actions;
 export default recipeSlice.reducer;
