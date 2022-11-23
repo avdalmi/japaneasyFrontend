@@ -1,6 +1,6 @@
-import React from 'react';
-import CarouselComp from '../components/Carousel/Carousel';
-import {Link }from "react-router-dom";
+import React from "react";
+import CarouselComp from "../components/Carousel/Carousel";
+import { Link } from "react-router-dom";
 
 function Homepage() {
   return (
@@ -8,14 +8,15 @@ function Homepage() {
       <CarouselComp />
 
       <div>
-        <div style={ { maxHeight: "20%" } }>
-          <Link to="/recipes"> <h3>Recipe Explorer</h3>
+        <div style={{ maxHeight: "20%" }}>
+          <Link to="/recipes">
+            <h3>Recipe Explorer</h3>
             <img
-              style={ { maxWidth: "300px" } }
+              style={{ maxWidth: "300px" }}
               src="https://gurunavi.com/en/japanfoodie/article/a_guide_to_washoku/img/13_washoku.jpg"
-              alt="Traditional Japanese dishes" />
+              alt="Traditional Japanese dishes"
+            />
           </Link>
-
         </div>
 
         <div>

@@ -9,56 +9,56 @@ export interface RecipeState {
   description: string;
   rating: number;
   image: string;
+  time: string;
   difficulty: string;
-    portions: number;
-    prefectureId: number;
+  portions: number;
+  prefectureId: number;
 }
 
 export interface IngredientState {
-    id: number,
-    ingredientDescriptionId: number,
-    measurement: string,
-    name: string,
-    quantity: number,
-    recipeId: number
+  id: number;
+  ingredientDescriptionId: number;
+  measurement: string;
+  name: string;
+  quantity: number;
+  recipeId: number;
 }
 export interface InstructionsState {
-    id: number,
-    description: string,
-    recipeId: number,
-    step: number
+  id: number;
+  description: string;
+  recipeId: number;
+  step: number;
 }
 
 export interface CompleteRecipeState {
-    id: number,
-    categoryId: number,
-    name: string,
-    description: string,
-    rating: number,
-    image: string,
-    difficulty: string,
-    portions: number,
-    prefectureId: number,
-    time: string,
-    ingredients: IngredientState[],
-    instructions: InstructionsState[],
+  id: number;
+  categoryId: number;
+  name: string;
+  description: string;
+  rating: number;
+  image: string;
+  difficulty: string;
+  portions: number;
+  prefectureId: number;
+  time: string;
+  ingredients: IngredientState[];
+  instructions: InstructionsState[];
 }
 export interface CategoryState {
-    name: string,
-    id: number,
+  name: string;
+  id: number;
 }
 
 export interface RecipeSliceState {
-    recipes: RecipeState[];
-    fullRecipes: CompleteRecipeState[];
-    categories: CategoryState[]
+  recipes: RecipeState[];
+  fullRecipes: CompleteRecipeState[];
+  categories: CategoryState[];
 }
 
-
 const initialState: RecipeSliceState = {
-    recipes: [],
-    fullRecipes: [],
-    categories: []
+  recipes: [],
+  fullRecipes: [],
+  categories: [],
 };
 
 export const recipeSlice = createSlice({
@@ -66,20 +66,20 @@ export const recipeSlice = createSlice({
   initialState,
   reducers: {
     fetchAllRecipes: (state, action: PayloadAction<RecipeState[]>) => {
-          state.recipes = action.payload;
-    //   console.log("current State", current(state));
-      },
-      fetchRecipeById: (state, action: PayloadAction<CompleteRecipeState[]>) => {
-        //  console.log("action", action)
-          state.fullRecipes = action.payload
-        //   console.log("current state", current(state))
-      },
-      fetchCategories: (state, action: PayloadAction<CategoryState[]>) => {
-        //   console.log("action", action)
-          state.categories = action.payload
-        //   console.log("current state", current(state))
-      }
-  }
+      state.recipes = action.payload;
+      //   console.log("current State", current(state));
+    },
+    fetchRecipeById: (state, action: PayloadAction<CompleteRecipeState[]>) => {
+      //  console.log("action", action)
+      state.fullRecipes = action.payload;
+      //   console.log("current state", current(state))
+    },
+    fetchCategories: (state, action: PayloadAction<CategoryState[]>) => {
+      //   console.log("action", action)
+      state.categories = action.payload;
+      //   console.log("current state", current(state))
+    },
+  },
 });
 
 //Selectors
@@ -87,13 +87,14 @@ export const selectRecipe = (state: RootState): RecipeState[] =>
   state.recipe.recipes;
 
 export const selectFullRecipe = (state: RootState): CompleteRecipeState[] => {
-    // console.log("rootstate", state.recipe)
-    return state.recipe.fullRecipes
-}
+  // console.log("rootstate", state.recipe)
+  return state.recipe.fullRecipes;
+};
 
 export const selectCategories = (state: RootState): CategoryState[] => {
-    //   console.log("rootstate", state.recipe)
-    return state.recipe.categories
-}
-export const { fetchAllRecipes, fetchRecipeById, fetchCategories } = recipeSlice.actions;
+  //   console.log("rootstate", state.recipe)
+  return state.recipe.categories;
+};
+export const { fetchAllRecipes, fetchRecipeById, fetchCategories } =
+  recipeSlice.actions;
 export default recipeSlice.reducer;

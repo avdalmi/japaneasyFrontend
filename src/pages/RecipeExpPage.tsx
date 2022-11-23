@@ -3,7 +3,6 @@ import RecipeCard from "../components/RecipeCard/RecipeCard";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { selectCategories, selectRecipe } from "../store/recipes/slice";
 import { fetchAllRecipesThunk, getCategories } from "../store/recipes/thunks";
-import Filter from "../components/Filter/Filter";
 
 const RecipeExpPage = () => {
   const dispatch = useAppDispatch();
@@ -12,7 +11,7 @@ const RecipeExpPage = () => {
   const categories = useAppSelector(selectCategories);
   //   console.log("categories", categories);
 
-  const [filter, setFilter] = useState(0);
+  const [filter, setFilter] = useState(8);
 
   useEffect(() => {
     dispatch(fetchAllRecipesThunk());
@@ -21,12 +20,11 @@ const RecipeExpPage = () => {
 
   return (
     <div>
-      <h1>Recipe page</h1>
-
-      {!recipes ? (
+      {!recipes || !categories ? (
         "Loading..."
       ) : (
         <div>
+          <h1>Recipe page</h1>
           <select
             value={filter}
             onChange={(e) => setFilter(parseInt(e.target.value))}
@@ -36,17 +34,19 @@ const RecipeExpPage = () => {
                 <option value={category.id} key={category.id}>
                   {category.name}
                 </option>
+                //   <div className="categoryItems" key={category.id}>
+                //     <input
+                //       className="catCheckBox"
+                //       type="checkbox"
+                //       value={category.id}
+                //       onChange={(e) => setFilter(e.target.value)}
+                //     />
+                //     <h4>{category.name}</h4>
+                //   </div>
               );
             })}
           </select>
-
-          {filter === 8 ? (
-            <div>
-              {recipes.map((recipe) => {
-                return <RecipeCard key={recipe.id} recipe={recipe} />;
-              })}
-            </div>
-          ) : (
+          {filter !== 8 ? (
             <>
               {recipes
                 .filter(
@@ -57,6 +57,12 @@ const RecipeExpPage = () => {
                   return <RecipeCard key={recipe.id} recipe={recipe} />;
                 })}
             </>
+          ) : (
+            <div>
+              {recipes.map((recipe) => {
+                return <RecipeCard key={recipe.id} recipe={recipe} />;
+              })}
+            </div>
           )}
         </div>
       )}
