@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
+import Loading from "../Loading/Loading";
 
 interface TipsDisplayProps {
   tips: TipsState;
@@ -12,7 +13,9 @@ interface TipsDisplayProps {
 function TipsCard(props: TipsDisplayProps) {
   return (
     <div>
-      {!props ? null : (
+      {!props ? (
+        <Loading />
+      ) : (
         <Container>
           <Card style={{ width: "18rem", border: "1px solid black" }}>
             <Card.Img

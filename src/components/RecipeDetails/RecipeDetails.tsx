@@ -1,5 +1,6 @@
 import React from "react";
 import { CompleteRecipeState } from "../../store/recipes/slice";
+import Loading from "../Loading/Loading";
 
 interface RecipeDetailsDisplayProps {
   recipe: CompleteRecipeState;
@@ -54,7 +55,7 @@ function RecipeDetails(props: RecipeDetailsDisplayProps) {
           <p>{description}</p>
 
           {!instructions ? (
-            "Loading..."
+            <Loading />
           ) : (
             <div style={{ border: "1px solid black", margin: "20px" }}>
               <h4>Instructions</h4>

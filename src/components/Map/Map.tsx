@@ -6,6 +6,7 @@ import { selectPrefectures } from "../../store/prefectures/slice";
 import { japanData } from "./Data";
 import { OnClick } from "../../types/EventListener";
 import Carousel from "react-bootstrap/Carousel";
+import Loading from "../Loading/Loading";
 
 const center = [37.7608, 140.4748];
 
@@ -103,45 +104,49 @@ export default function Map() {
             <button onClick={(e: OnClick) => setShowPopUp(false)}>close</button>
             <h1>{title}</h1>
             <p>{description}</p>
-            <Carousel>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  //@ts-ignore
-                  src={images[0]}
-                  alt="first slide"
-                  style={{ maxHeight: "350px" }}
-                />
-              </Carousel.Item>
+            {!images ? (
+              <Loading />
+            ) : (
+              <Carousel>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    //@ts-ignore
+                    src={images[0]}
+                    alt="first slide"
+                    style={{ maxHeight: "350px" }}
+                  />
+                </Carousel.Item>
 
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  //@ts-ignore
-                  src={images[1]}
-                  alt="first slide"
-                  style={{ maxHeight: "350px" }}
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  //@ts-ignore
-                  src={images[2]}
-                  alt="first slide"
-                  style={{ maxHeight: "350px" }}
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  //@ts-ignore
-                  src={images[3]}
-                  alt="first slide"
-                  style={{ maxHeight: "350px" }}
-                />
-              </Carousel.Item>
-            </Carousel>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    //@ts-ignore
+                    src={images[1]}
+                    alt="first slide"
+                    style={{ maxHeight: "350px" }}
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    //@ts-ignore
+                    src={images[2]}
+                    alt="first slide"
+                    style={{ maxHeight: "350px" }}
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    //@ts-ignore
+                    src={images[3]}
+                    alt="first slide"
+                    style={{ maxHeight: "350px" }}
+                  />
+                </Carousel.Item>
+              </Carousel>
+            )}
           </div>
         )}
       </MapContainer>

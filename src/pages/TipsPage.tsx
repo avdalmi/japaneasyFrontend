@@ -17,7 +17,7 @@ function TipsPage() {
 
   return (
     <div>
-      <h1>Tips Page</h1>
+      <h1>Tips and tricks</h1>
       {tips.map((tip: TipsState) => {
         return <TipsCard key={tip.id} tips={tip} />;
       })}

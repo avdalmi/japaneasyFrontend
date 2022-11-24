@@ -30,25 +30,29 @@ function Homepage() {
           </Link>
         </div>
 
-        <div>
+        {/* <div>
           <h3>What are bento boxes?</h3>
           <img />
-        </div>
+        </div> */}
 
-        <div>
-          <h3>Tips and tricks</h3>
-          <img />
-        </div>
+        <Link to="/tips">
+          <h3>Tips & Tricks</h3>
+          <img
+            style={{ maxWidth: "300px" }}
+            src="https://www.justonecookbook.com/wp-content/uploads/2020/04/Kabocha-Miso-Soup-0265-I.jpg"
+            alt="Traditional Japanese Art"
+          />
+        </Link>
 
-        <div>
+        {/* <div>
           <h3>Ingredient Explorer</h3>
           <img />
-        </div>
+        </div> */}
 
-        <div>
+        {/* <div>
           <h3>Where to eat in Amsterdam</h3>
           <img />
-        </div>
+        </div> */}
       </div>
     </div>
   );

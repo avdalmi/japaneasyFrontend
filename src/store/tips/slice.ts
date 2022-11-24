@@ -12,10 +12,12 @@ export interface TipsState {
 
 export interface TipsSliceState {
   tips: TipsState[];
+  tipById: TipsState[];
 }
 
 const initialState: TipsSliceState = {
   tips: [],
+  tipById: [],
 };
 export const tipsSlice = createSlice({
   name: "tips",
@@ -25,11 +27,17 @@ export const tipsSlice = createSlice({
       state.tips = [...action.payload];
       //   console.log("current State", current(state));
     },
+    fetchTipsById: (state, action: PayloadAction<TipsState[]>) => {
+      state.tipById = action.payload;
+      //   console.log("current state", current(state));
+    },
   },
 });
 
 //Selectors
 export const selectAllTips = (state: RootState): TipsState[] => state.tips.tips;
+export const selectTipById = (state: RootState): TipsState[] =>
+  state.tips.tipById;
 
-export const { fetchAllTips } = tipsSlice.actions;
+export const { fetchAllTips, fetchTipsById } = tipsSlice.actions;
 export default tipsSlice.reducer;
