@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import RecipeCard from "../components/RecipeCard/RecipeCard";
+import SearchBar from "../components/SearchBar/SearchBar";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { selectCategories, selectRecipe } from "../store/recipes/slice";
 import { fetchAllRecipesThunk, getCategories } from "../store/recipes/thunks";
@@ -25,6 +26,10 @@ const RecipeExpPage = () => {
       ) : (
         <div>
           <h1>Recipe page</h1>
+          {/* @ts-ignore */}
+
+          <SearchBar data={recipes} />
+
           <select
             value={filter}
             onChange={(e) => setFilter(parseInt(e.target.value))}

@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import CarouselComp from "../components/Carousel/Carousel";
 import { Link } from "react-router-dom";
+import SearchBar from "../components/SearchBar/SearchBar";
 
 function Homepage() {
+  // const [term, setTerm] = useState("");
+
+  // //@ts-ignore
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   console.log("term", term);
+  // };
+
   return (
     <div>
       <CarouselComp />
+      {/* <div className="search-bar">
+        <form onSubmit={submitHandler}>
+          <input
+            type="text"
+            value={term}
+            placeholder="Search"
+            onChange={(e) => setTerm(e.target.value)}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </div> */}
 
       <div>
         <div style={{ maxHeight: "20%" }}>

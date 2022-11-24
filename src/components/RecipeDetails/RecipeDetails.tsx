@@ -8,7 +8,7 @@ interface RecipeDetailsDisplayProps {
 
 function RecipeDetails(props: RecipeDetailsDisplayProps) {
   const recipe = props.recipe;
-  console.log("recipe props", props);
+  // console.log("recipe props", props);
 
   const {
     name,
