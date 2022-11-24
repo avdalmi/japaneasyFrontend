@@ -16,6 +16,7 @@ import { selectRecipe } from "./store/recipes/slice";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 import MapPage from "./pages/MapPage";
 import TipsPage from "./pages/TipsPage";
+import TipsDetailPage from "./pages/TipsDetailPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -39,6 +40,7 @@ function App() {
         <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
         <Route path="/information" element={<MapPage />} />
         <Route path="/tips" element={<TipsPage />} />
+        <Route path="/tips/:id" element={<TipsDetailPage />} />
       </Routes>
     </div>
   );
