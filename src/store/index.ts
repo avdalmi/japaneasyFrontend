@@ -3,6 +3,7 @@ import userReducer from "./user/slice";
 import appReducer from "./appState/slice";
 import recipeReducer from "./recipes/slice";
 import prefectureReducer from "./prefectures/slice";
+import tipsReducer from "./tips/slice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     user: userReducer,
     recipe: recipeReducer,
     prefecture: prefectureReducer,
+    tips: tipsReducer,
   },
 });
 

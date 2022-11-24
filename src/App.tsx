@@ -15,6 +15,7 @@ import { fetchAllRecipesThunk } from "./store/recipes/thunks";
 import { selectRecipe } from "./store/recipes/slice";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 import MapPage from "./pages/MapPage";
+import TipsPage from "./pages/TipsPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -36,7 +37,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/recipes" element={<RecipeExpPage />} />
         <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
-        <Route path="/map" element={<MapPage />} />
+        <Route path="/information" element={<MapPage />} />
+        <Route path="/tips" element={<TipsPage />} />
       </Routes>
     </div>
   );

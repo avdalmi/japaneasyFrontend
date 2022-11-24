@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import { selectPrefectures } from "../../store/prefectures/slice";
-import { MapContainer, TileLayer, Polygon, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Polygon } from "react-leaflet";
 import { useAppSelector } from "../../hooks";
 import { selectPrefectures } from "../../store/prefectures/slice";
 import { japanData } from "./Data";
@@ -11,7 +11,6 @@ const center = [37.7608, 140.4748];
 
 export default function Map() {
   const prefectures = useAppSelector(selectPrefectures);
-  // console.log("prefectures", prefectures);
 
   const [showPopUp, setShowPopUp] = useState(false);
   const [title, setTitle] = useState("");
@@ -74,21 +73,12 @@ export default function Map() {
                 },
                 click: (e) => {
                   prefectures.map((prefs) => {
-                    // console.log("namee", pref.properties.nam);
-                    // console.log("prefs title", prefs.image);
-
                     if (prefs.title.split(" ")[0] === pref.properties.nam) {
-                      // const arrayImages = [];
                       setTitle(prefs.title);
                       setDescription(prefs.description);
-                      // console.log("imagesss", prefs.image);
                       //@ts-ignore
                       setImages(prefs.image);
-                      //@ts-ignore
-                      // setImages(arrayImages);
-                      // setImages(prefs.image);
                       setShowPopUp(true);
-                      // console.log("array", arrayImages);
                     }
                   });
                 },
@@ -158,78 +148,3 @@ export default function Map() {
     </div>
   );
 }
-
-/* {prefectures.map((pref) => {
-        const parsedLong = parseInt(pref.long);
-        const parsedLat = parseInt(pref.lat);
-        return (
-          <Marker position={[parsedLong, parsedLat]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-        );
-      })} */
-
-// export default Map;
-
-// const options = {
-//   region: "JP",
-//   colorAxis: { colors: ["#00853f", "black", "#e31b23"] },
-//   backgroundColor: "#81d4fa",
-//   //datalessRegionColor: "#3794ff",
-//   //defaultColor: '#f5f5f5',
-//   displayMode: "regions",
-//   resolution: "provinces",
-// };
-
-// // function Map() {
-// //   const prefectures = useAppSelector(selectPrefectures);
-// //   //   console.log("prefectures", prefectures);
-
-// //   //   const data = [
-// //   //     ["Prefecture", "Description", "Image"],
-
-// //   //     ["Hokkaido", 200, 800],
-// //   //   ];
-
-// //   //   console.log("data", data);
-
-// //   const array = [["Prefecture", "Description"]];
-// //   prefectures.map((pref) =>
-// //     array.push([pref.title.split(" ")[0], pref.description])
-// //   );
-
-// //   //   console.log("titles", array);
-// //   const data = array;
-
-// //   const chartEvent = [
-// //     [
-// //       {
-// //         eventName: "select",
-// //         //@ts-ignore
-// //         callback: ({ chartWrapper }) => {
-// //           const chart = chartWrapper.getChart();
-// //           const selection = chart.getSelection();
-// //           if (selection.length === 0) return;
-// //           const region = data[selection[0].row + 1];
-// //           console.log("Selected : " + region);
-// //         },
-// //       },
-// //     ],
-// //   ];
-// //   return (
-// //     <Chart
-// //       //   style={{ width: "100%", height: "1000px" }}
-// //       //@ts-ignore
-// //       chartEvents={chartEvent}
-// //       chartType="GeoChart"
-// //       width="100%"
-// //       height="100%"
-// //       data={data}
-// //       options={options}
-// //     />
-// //   );
-// // }
-
-// // export default Map;

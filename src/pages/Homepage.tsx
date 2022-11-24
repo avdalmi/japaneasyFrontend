@@ -20,8 +20,14 @@ function Homepage() {
         </div>
 
         <div>
-          <h3>History</h3>
-          <img />
+          <Link to="/information">
+            <h3>Prefecture Information</h3>
+            <img
+              style={{ maxWidth: "300px" }}
+              src="https://wallpapercave.com/wp/wp9483207.jpg"
+              alt="Traditional Japanese Art"
+            />
+          </Link>
         </div>
 
         <div>
