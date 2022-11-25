@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CarouselComp from "../components/Carousel/Carousel";
 import { Link } from "react-router-dom";
 import SearchBar from "../components/SearchBar/SearchBar";
+import { Breadcrumb } from "react-bootstrap";
 
 function Homepage() {
   // const [term, setTerm] = useState("");
@@ -26,7 +27,6 @@ function Homepage() {
           <button type="submit">Submit</button>
         </form>
       </div> */}
-
       <div>
         <div style={{ maxHeight: "20%" }}>
           <Link to="/recipes">
@@ -74,6 +74,7 @@ function Homepage() {
           <img />
         </div> */}
       </div>
+      <Breadcrumb />{" "}
     </div>
   );
 }

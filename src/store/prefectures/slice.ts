@@ -13,7 +13,8 @@ export interface PrefectureState {
   long: string;
   lat: string;
   image: PrefectureImage[];
-  recipe: RecipeState[];
+  recipes: RecipeState;
+  id: number;
 }
 
 export interface PrefectureSliceState {
@@ -35,8 +36,10 @@ export const prefectureSlice = createSlice({
   },
 });
 
-export const selectPrefectures = (state: RootState): PrefectureState[] =>
-  state.prefecture.prefectures;
+export const selectPrefectures = (state: RootState): PrefectureState[] => {
+  // console.log("select", state.prefecture.prefectures);
+  return state.prefecture.prefectures;
+};
 
 export const { fetchAllPrefectures } = prefectureSlice.actions;
 

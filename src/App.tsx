@@ -11,8 +11,6 @@ import { selectAppLoading } from "./store/appState/selectors";
 import NavBar from "./components/NavBar/NavBar";
 import Loading from "./components/Loading/Loading";
 import RecipeExpPage from "./pages/RecipeExpPage";
-import { fetchAllRecipesThunk } from "./store/recipes/thunks";
-import { selectRecipe } from "./store/recipes/slice";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 import MapPage from "./pages/MapPage";
 import TipsPage from "./pages/TipsPage";
@@ -21,8 +19,6 @@ import TipsDetailPage from "./pages/TipsDetailPage";
 function App() {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectAppLoading);
-
-  const recipes = useAppSelector(selectRecipe);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
