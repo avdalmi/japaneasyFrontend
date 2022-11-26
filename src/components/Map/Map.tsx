@@ -1,35 +1,35 @@
 import React, { useState } from "react";
-// import { selectPrefectures } from "../../store/prefectures/slice";
 import { MapContainer, TileLayer, Polygon } from "react-leaflet";
 import { useAppSelector } from "../../hooks";
-import { selectPrefectures } from "../../store/prefectures/slice";
+import {
+  PrefectureImage,
+  selectPrefectures,
+} from "../../store/prefectures/slice";
 import { japanData } from "./Data";
-import { OnClick } from "../../types/EventListener";
 import Carousel from "react-bootstrap/Carousel";
-import Loading from "../Loading/Loading";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Image from "react-bootstrap/Image";
 import Accordion from "react-bootstrap/Accordion";
-import { RecipeState } from "../../store/recipes/slice";
 import { Link } from "react-router-dom";
-import PrefecturePolygons from "../PrefecturePolygons/PrefecturePolygons";
+import Button from "react-bootstrap/Button";
+import { RecipeState } from "../../store/recipes/slice";
+import { Coordinates, MapCenter } from "../../types/Maps";
 
 export default function Map() {
+  const center = [37.7608, 140.4748];
   const prefectures = useAppSelector(selectPrefectures);
 
-  // console.log("pref", prefectures);
-  const [showPopUp, setShowPopUp] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [images, setImages] = useState();
-  const [recipe, setRecipe] = useState<any>();
+  const [images, setImages] = useState<PrefectureImage[]>([]);
+  const [show, setShow] = useState(false);
+  const [recipe, setRecipe] = useState<RecipeState[]>([]);
+  const handleClose = () => setShow(false);
 
-  // console.log("recipe", recipe);
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <MapContainer
-        center={[37.7608, 140.4748]}
+        center={center as MapCenter}
         zoom={5.5}
         style={{ width: "90vw", height: "90vh" }}
       >
@@ -37,40 +37,12 @@ export default function Map() {
           url="https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=v4T1pdLNYtqXIQR4IOYC"
           attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         />
-        <PrefecturePolygons />
-        {/* {japanData.features.map((pref) => {
-          // console.log("pref", pref);
-          const coordinates = pref.geometry.coordinates[0].map((item: any) => {
-            console.log("items", item[1], item[0]);
-            //   [
+        {japanData.features.map((pref) => {
+          const coordinates = pref.geometry.coordinates[0].map((item) => [
+            item[1],
+            item[0],
+          ]);
 
-            //   item[1],
-            //   item[0],
-            // ];
-          });
-          //  {geodata.features.map((pref) => {
-          //         //@ts-ignore
-          //         // console.log("pref", pref.geometry.coordinates);
-          //         //@ts-ignore
-          //         const coordinates = pref.geometry.coordinates[0].map(
-          //           (item: any) => {
-          //             // console.log(item);
-          //             if (item.length <= 2) {
-          //               //   console.log("items", item[1], item[0])
-          //               return [item[1], item[0]];
-          //             } else {
-          //               item.map((i: any) => {
-          //                 // console.log("i", i[1], i[0]);
-          //                 return [i[1], i[0]];
-          //               });
-          //             }
-          //           }
-          //           //   [
-          //           //   console.log("items", item[1], item[2]),
-          //           //   //   item[1],
-          //           //   //   item[0],
-          //           // ]
-          //         );
           return (
             <Polygon
               key={pref.properties.id}
@@ -79,12 +51,10 @@ export default function Map() {
                 fillOpacity: 0.7,
                 weight: 2,
                 opacity: 1,
-
                 dashArray: "3",
                 color: "white",
               }}
-              //@ts-ignore
-              positions={coordinates}
+              positions={coordinates as Coordinates}
               eventHandlers={{
                 mouseover: (e) => {
                   const layer = e.target;
@@ -108,122 +78,107 @@ export default function Map() {
                   });
                 },
                 click: (e) => {
-                  // prefectures.map((prefs) => {
-                  //   if (prefs.title.split(" ")[0] === pref.properties.nam) {
-                  //     setTitle(prefs.title);
-                  //     setDescription(prefs.description);
-                  //     //@ts-ignore
-                  //     setImages(prefs.image);
-                  //     setShowPopUp(true);
-                  //     setRecipe(prefs.recipes);
-                  //   }
-                  // });
+                  // compare if the selected prefecture name is the same as the prefecture name from the DB. If true, sets the state with data from DB
+                  prefectures.map((prefs) => {
+                    if (prefs.title.split(" ")[0] === pref.properties.nam) {
+                      setTitle(prefs.title);
+                      setDescription(prefs.description);
+                      setImages(prefs.image as PrefectureImage[]);
+                      setShow(true);
+                      setRecipe(prefs.recipes as any);
+                    }
+                  });
                 },
               }}
             />
           );
-        })} */}
+        })}
       </MapContainer>
+      {!images ? null : (
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title id="example-modal-sizes-title-lg">{title}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {description}
+            <Carousel>
+              <Carousel.Item>
+                <Image
+                  className="d-block w-100"
+                  src={images[0] as any}
+                  alt="first slide"
+                  style={{
+                    maxHeight: "300px",
+                    maxWidth: "500px",
+                    margin: "auto",
+                  }}
+                />
+              </Carousel.Item>
+
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src={images[1] as any}
+                  alt="first slide"
+                  style={{
+                    maxHeight: "300px",
+                    maxWidth: "500px",
+                    margin: "auto",
+                  }}
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src={images[2] as any}
+                  alt="first slide"
+                  style={{
+                    maxHeight: "300px",
+                    maxWidth: "500px",
+                    margin: "auto",
+                  }}
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src={images[3] as any}
+                  alt="first slide"
+                  style={{
+                    maxHeight: "300px",
+                    maxWidth: "500px",
+                    margin: "auto",
+                    borderRadius: "5px",
+                  }}
+                />
+              </Carousel.Item>
+            </Carousel>
+            {recipe.map((rec: RecipeState) => {
+              return (
+                <Accordion key={rec.id}>
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header>{rec.name}</Accordion.Header>
+                    <Accordion.Body>
+                      <img
+                        src={rec.image}
+                        alt={rec.name}
+                        style={{ width: "200px" }}
+                      />
+                      <p>difficulty: {rec.difficulty}</p>
+                      <p>{rec.rating}</p>
+                      <p>{rec.time}</p>
+                      <p>{rec.description.substring(0, 650)}</p>
+                      <Link to={`/recipes/${rec.id}`}>
+                        <Button>Go to recipe</Button>
+                      </Link>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+              );
+            })}
+          </Modal.Body>
+        </Modal>
+      )}
     </div>
   );
 }
-
-// {
-//   !images ? (
-//     <Loading />
-//   ) : (
-//     <Modal
-//       size="lg"
-//       show={showPopUp}
-//       onHide={() => setShowPopUp(false)}
-//       aria-labelledby="example-modal-sizes-title-lg"
-//     >
-// <Modal.Header closeButton>
-//   <Modal.Title id="example-modal-sizes-title-lg">{title}</Modal.Title>
-// </Modal.Header>
-// {/* @ts-ignore */}
-// <Modal.Body>
-//   {description}
-//   <Carousel>
-//     <Carousel.Item>
-//       <Image
-//         className="d-block w-100"
-//         //@ts-ignore
-//         src={images[0]}
-//         alt="first slide"
-//         style={{
-//           maxHeight: "300px",
-//           maxWidth: "500px",
-//           margin: "auto",
-//         }}
-//       />
-//     </Carousel.Item>
-
-//     <Carousel.Item>
-//       <img
-//         className="d-block w-100"
-//         //@ts-ignore
-//         src={images[1]}
-//         alt="first slide"
-//         style={{
-//           maxHeight: "300px",
-//           maxWidth: "500px",
-//           margin: "auto",
-//         }}
-//       />
-//     </Carousel.Item>
-//     <Carousel.Item>
-//       <img
-//         className="d-block w-100"
-//         //@ts-ignore
-//         src={images[2]}
-//         alt="first slide"
-//         style={{
-//           maxHeight: "300px",
-//           maxWidth: "500px",
-//           margin: "auto",
-//         }}
-//       />
-//     </Carousel.Item>
-//     <Carousel.Item>
-//       <img
-//         className="d-block w-100"
-//         //@ts-ignore
-//         src={images[3]}
-//         alt="first slide"
-//         style={{
-//           maxHeight: "300px",
-//           maxWidth: "500px",
-//           margin: "auto",
-//           borderRadius: "5px",
-//         }}
-//       />
-//     </Carousel.Item>
-//   </Carousel>
-//   {recipe.map((rec: RecipeState) => {
-//     return (
-//       <Accordion key={rec.id}>
-//         <Accordion.Item eventKey="0">
-//           <Accordion.Header>{rec.name}</Accordion.Header>
-//           <Accordion.Body>
-//             <img
-//               src={rec.image}
-//               alt={rec.name}
-//               style={{ width: "200px" }}
-//             />
-//             <p>difficulty: {rec.difficulty}</p>
-//             <p>{rec.rating}</p>
-//             <p>{rec.time}</p>
-//             <p>{rec.description.substring(0, 650)}</p>
-//             <Link to={`/recipes/${rec.id}`}>
-//               <Button>Go to recipe</Button>
-//             </Link>
-//           </Accordion.Body>
-//         </Accordion.Item>
-//       </Accordion>
-//     );
-//   })}
-// </Modal.Body>
-//     </Modal>
-//   );
-// }
