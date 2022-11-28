@@ -2,15 +2,15 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
 
-function CarouselComp() {
+const CarouselComp: React.FC = () => {
   return (
     <Carousel>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://d3vonci41uckcv.cloudfront.net/old-images/original/46effa99-198d-4973-969b-dd438c18a6d1.jpg"
+          src="https://media.voicemap.me/public/routes/images/000/003/910/original/Fushimi_Inari.jpg"
           alt="first slide"
-          style={{ maxHeight: "500px" }}
+          style={{ maxHeight: "390px", objectFit: "cover" }}
         />
         <Carousel.Caption>
           <h3>Welcome</h3>
@@ -26,9 +26,9 @@ function CarouselComp() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://d1e00ek4ebabms.cloudfront.net/production/e246b673-64b4-4cc3-be4b-061b1345a7ad.jpg"
+          src="https://www.gotthewanderingeye.com/wp-content/uploads/2022/03/chureito-pagoda-panorama_wm.jpg"
           alt="tokyo streets"
-          style={{ maxHeight: "500px" }}
+          style={{ maxHeight: "390px", objectFit: "cover" }}
         />
         <Carousel.Caption>
           <Button>Take a tour of the website</Button>
@@ -36,6 +36,6 @@ function CarouselComp() {
       </Carousel.Item>
     </Carousel>
   );
-}
+};
 
 export default CarouselComp;

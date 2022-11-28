@@ -51,13 +51,13 @@ export interface CategoryState {
 
 export interface RecipeSliceState {
   recipes: RecipeState[];
-  fullRecipes: CompleteRecipeState[];
+  fullRecipes: CompleteRecipeState | null;
   categories: CategoryState[];
 }
 
 const initialState: RecipeSliceState = {
   recipes: [],
-  fullRecipes: [],
+  fullRecipes: null,
   categories: [],
 };
 
@@ -69,7 +69,7 @@ export const recipeSlice = createSlice({
       state.recipes = action.payload;
       //   console.log("current State", current(state));
     },
-    fetchRecipeById: (state, action: PayloadAction<CompleteRecipeState[]>) => {
+    fetchRecipeById: (state, action: PayloadAction<CompleteRecipeState>) => {
       //  console.log("action", action)
       state.fullRecipes = action.payload;
       //   console.log("current state", current(state))
@@ -86,7 +86,7 @@ export const recipeSlice = createSlice({
 export const selectRecipe = (state: RootState): RecipeState[] =>
   state.recipe.recipes;
 
-export const selectFullRecipe = (state: RootState): CompleteRecipeState[] => {
+export const selectFullRecipe = (state: RootState) => {
   // console.log("rootstate", state.recipe)
   return state.recipe.fullRecipes;
 };

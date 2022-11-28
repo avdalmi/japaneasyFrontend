@@ -1,9 +1,11 @@
 import Spinner from "react-bootstrap/Spinner";
 
-export default function Loading() {
+const Loading: React.FC = () => {
   return (
     <div className="loading_spinner">
       <Spinner animation="grow" role="status"></Spinner>
     </div>
   );
-}
+};
+
+export default Loading;

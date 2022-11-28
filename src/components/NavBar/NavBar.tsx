@@ -8,7 +8,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "../../images/logo.jpeg";
 
-export default function NavBar() {
+const NavBar: React.FC = () => {
   const token = useSelector(selectToken);
 
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
@@ -41,4 +41,6 @@ export default function NavBar() {
       </Container>
     </Navbar>
   );
-}
+};
+
+export default NavBar;

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Map from "../components/Map/Map";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { selectPrefectures } from "../store/prefectures/slice";
+import { useAppDispatch } from "../hooks";
 import { getAllPrefectures } from "../store/prefectures/thunks";
 
 const MapPage = () => {

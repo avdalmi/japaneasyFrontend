@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import CarouselComp from "../components/Carousel/Carousel";
+import CarouselComp from "../../components/Carousel/Carousel";
 import { Link } from "react-router-dom";
-import SearchBar from "../components/SearchBar/SearchBar";
+import SearchBar from "../../components/SearchBar/SearchBar";
 import { Breadcrumb } from "react-bootstrap";
+import "./HomePage.css";
 
 function Homepage() {
   // const [term, setTerm] = useState("");
@@ -16,19 +17,8 @@ function Homepage() {
   return (
     <div>
       <CarouselComp />
-      {/* <div className="search-bar">
-        <form onSubmit={submitHandler}>
-          <input
-            type="text"
-            value={term}
-            placeholder="Search"
-            onChange={(e) => setTerm(e.target.value)}
-          />
-          <button type="submit">Submit</button>
-        </form>
-      </div> */}
-      <div>
-        <div style={{ maxHeight: "20%" }}>
+      <div className="homePageNavContainer">
+        <div className="homePageNavItemContainer">
           <Link to="/recipes">
             <h3>Recipe Explorer</h3>
             <img
@@ -39,7 +29,7 @@ function Homepage() {
           </Link>
         </div>
 
-        <div>
+        <div className="homePageNavItemContainer">
           <Link to="/information">
             <h3>Prefecture Information</h3>
             <img
@@ -50,19 +40,16 @@ function Homepage() {
           </Link>
         </div>
 
-        {/* <div>
-          <h3>What are bento boxes?</h3>
-          <img />
-        </div> */}
-
-        <Link to="/tips">
-          <h3>Tips & Tricks</h3>
-          <img
-            style={{ maxWidth: "300px" }}
-            src="https://www.justonecookbook.com/wp-content/uploads/2020/04/Kabocha-Miso-Soup-0265-I.jpg"
-            alt="Traditional Japanese Art"
-          />
-        </Link>
+        <div className="homePageNavItemContainer">
+          <Link to="/tips">
+            <h3>Tips & Tricks</h3>
+            <img
+              style={{ maxWidth: "300px" }}
+              src="https://www.justonecookbook.com/wp-content/uploads/2020/04/Kabocha-Miso-Soup-0265-I.jpg"
+              alt="Traditional Japanese Art"
+            />
+          </Link>
+        </div>
 
         {/* <div>
           <h3>Ingredient Explorer</h3>
