@@ -32,13 +32,8 @@ const RecipeCard = (props: RecipeDisplayProps) => {
               <div className="recipeCardTitleRating">
                 <Card.Title className="recipeCardTitle">
                   {props.recipe.name}
-
-                  <Rating
-                    // @ts-ignore
-                    className="recipeCardRating"
-                    rating={props.recipe.rating}
-                  />
                 </Card.Title>
+                <Rating rating={props.recipe.rating} />
               </div>
 
               <Card.Subtitle className="recipeCardSubtitle">
@@ -56,11 +51,13 @@ const RecipeCard = (props: RecipeDisplayProps) => {
                 {props.recipe.description.substring(0, 150)}...
               </Card.Text>
 
-              <Link to={`/recipes/${props.recipe.id}`}>
-                <Button variant="secondary" className="recipeCardButton">
-                  Go to recipe
-                </Button>
-              </Link>
+              <div className="recipeDetailsButton">
+                <Link to={`/recipes/${props.recipe.id}`}>
+                  <Button variant="secondary" className="recipeCardButton">
+                    Go to recipe
+                  </Button>
+                </Link>
+              </div>
             </Card.Body>
           </Card>
         </Container>

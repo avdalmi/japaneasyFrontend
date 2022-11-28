@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Loading from "../Loading/Loading";
+import "./TipsCard.css";
+import { Col, Row } from "react-bootstrap";
 
 interface TipsDisplayProps {
   tips: TipsState;
@@ -16,24 +18,28 @@ function TipsCard(props: TipsDisplayProps) {
       {!props ? (
         <Loading />
       ) : (
-        <Container>
-          <Card style={{ width: "18rem", border: "1px solid black" }}>
+        <Row className="tipsCardContainer">
+          <Card className="tipsCardCardContainer">
             <Card.Img
               variant="top"
               src={props.tips.image}
-              style={{ width: "15rem" }}
+              className="tipsCardImage"
             />
-            <Card.Body>
+            <Card.Body className="tipsCardBody">
               <Card.Title>{props.tips.name}</Card.Title>
 
-              <Card.Text>{props.tips.description.substring(0, 150)}</Card.Text>
+              <Card.Text>
+                {props.tips.description.substring(0, 150)}...
+              </Card.Text>
 
               <Link to={`/tips/${props.tips.id}`}>
-                <Button variant="secondary">Read more</Button>
+                <Button className="tipsCardButton" variant="secondary">
+                  Read more
+                </Button>
               </Link>
             </Card.Body>
           </Card>
-        </Container>
+        </Row>
       )}
     </div>
   );
