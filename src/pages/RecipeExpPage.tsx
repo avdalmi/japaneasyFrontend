@@ -17,7 +17,7 @@ const RecipeExpPage = () => {
 
   return (
     <div>
-      <SearchBar data={recipes} />
+      <SearchBar recipes={recipes} ingredients={null} />
       <Filter
         recipes={recipes}
         categories={categories}

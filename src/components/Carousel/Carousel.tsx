@@ -10,7 +10,7 @@ const CarouselComp: React.FC = () => {
           className="d-block w-100"
           src="https://media.voicemap.me/public/routes/images/000/003/910/original/Fushimi_Inari.jpg"
           alt="first slide"
-          style={{ maxHeight: "390px", objectFit: "cover" }}
+          style={{ maxHeight: "340px", objectFit: "cover" }}
         />
         <Carousel.Caption>
           <h3>Welcome</h3>
@@ -28,7 +28,7 @@ const CarouselComp: React.FC = () => {
           className="d-block w-100"
           src="https://www.gotthewanderingeye.com/wp-content/uploads/2022/03/chureito-pagoda-panorama_wm.jpg"
           alt="tokyo streets"
-          style={{ maxHeight: "390px", objectFit: "cover" }}
+          style={{ maxHeight: "340px", objectFit: "cover" }}
         />
         <Carousel.Caption>
           <Button>Take a tour of the website</Button>

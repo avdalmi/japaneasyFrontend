@@ -2,7 +2,7 @@ import StarRatings from "react-star-ratings";
 
 const Rating = (props: { rating: number }) => {
   return (
-    <div style={{ backgroundColor: "yellow" }}>
+    <div>
       <StarRatings
         name="rate1"
         numberOfStars={5}

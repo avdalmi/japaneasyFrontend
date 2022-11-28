@@ -4,7 +4,7 @@
   margin: 15px;
   border: 3px solid grey;
   min-height: 10rem;
-  max-height: 25rem;
+  max-height: 12rem;
 }
 
 .recipeCardImage {
@@ -17,9 +17,6 @@
 .recipeCardBody {
   display: flex;
   flex-direction: column;
-  align-self: flex-start;
-  align-content: flex-start;
-  align-items: flex-start;
 }
 
 .recipeCardButton {
@@ -30,16 +27,27 @@
 
 .recipeCardTitle {
   font-size: 20px;
-  margin: 0;
+  margin: 8px 5px 0 0;
   padding: 0;
 }
 
 .recipeCardSubtitle {
   font-size: 12px;
   margin: 5px;
+  align-self: flex-start;
 }
 
 .recipeCardText {
   font-size: 14px;
   text-align: left;
+}
+
+.recipeCardTitleRating {
+  display: flex;
+  flex-direction: row;
+}
+
+.recipeDetailsButton {
+  display: flex;
+  justify-content: flex-end;
 }
