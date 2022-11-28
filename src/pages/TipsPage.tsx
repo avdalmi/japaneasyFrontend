@@ -8,7 +8,7 @@ import SearchBar from "../components/SearchBar/SearchBar";
 
 function TipsPage() {
   const tips = useAppSelector(selectAllTips);
-  //   console.log("tips", tips);
+  console.log("tips", tips);
 
   const dispatch = useAppDispatch();
 

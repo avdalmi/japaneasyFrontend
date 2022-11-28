@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   CompleteRecipeState,
   IngredientState,
@@ -7,6 +7,10 @@ import {
 import Loading from "../Loading/Loading";
 import "./RecipeDetails.css";
 import Rating from "../Rating/Rating";
+import { useAppSelector, useAppDispatch } from "../../hooks";
+import { selectAllTips, selectTipById } from "../../store/tips/slice";
+import { getAllTips } from "../../store/tips/thunks";
+import { Link } from "react-router-dom";
 
 interface Props {
   recipe: CompleteRecipeState;
@@ -14,7 +18,13 @@ interface Props {
 
 const RecipeDetails: React.FC<Props> = ({ recipe }) => {
   // const recipe = props.recipe;
-  console.log("recipe props", recipe);
+  const tipsbyId = useAppSelector(selectAllTips);
+  console.log("select tips by idd", tipsbyId);
+
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getAllTips());
+  }, [dispatch]);
 
   const [style, setStyle] = useState(false);
   const {
@@ -71,9 +81,6 @@ const RecipeDetails: React.FC<Props> = ({ recipe }) => {
                         <strong>{ingredient.name}:</strong>{" "}
                         {ingredient.quantity} {ingredient.measurement}
                       </p>
-
-                      {/* {ingredient.name}: {ingredient.quantity}{" "}
-                      {ingredient.measurement} */}
                     </div>
                   );
                 })}
@@ -107,13 +114,13 @@ const RecipeDetails: React.FC<Props> = ({ recipe }) => {
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                       stroke="currentColor"
                       className="checkIcon"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
