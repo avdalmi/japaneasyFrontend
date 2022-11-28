@@ -1,0 +1,23 @@
+.homePageNavItemContainer {
+  background-color: pink;
+  margin: 10px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  background-image: url("https://wallpapercave.com/wp/wp9483207.jpg");
+}
+
+.homePageNavContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.homePageNavItemContainer h3 {
+  background-color: beige;
+  font-size: 30px;
+  color: black;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  align-items: center;
+}

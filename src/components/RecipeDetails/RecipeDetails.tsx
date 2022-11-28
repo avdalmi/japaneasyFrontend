@@ -1,15 +1,22 @@
-import React from "react";
-import { CompleteRecipeState } from "../../store/recipes/slice";
+import React, { useState } from "react";
+import {
+  CompleteRecipeState,
+  IngredientState,
+  InstructionsState,
+} from "../../store/recipes/slice";
 import Loading from "../Loading/Loading";
+import "./RecipeDetails.css";
+import Rating from "../Rating/Rating";
 
-interface RecipeDetailsDisplayProps {
+interface Props {
   recipe: CompleteRecipeState;
 }
 
-function RecipeDetails(props: RecipeDetailsDisplayProps) {
-  const recipe = props.recipe;
-  // console.log("recipe props", props);
+const RecipeDetails: React.FC<Props> = ({ recipe }) => {
+  // const recipe = props.recipe;
+  console.log("recipe props", recipe);
 
+  const [style, setStyle] = useState(false);
   const {
     name,
     description,
@@ -22,48 +29,94 @@ function RecipeDetails(props: RecipeDetailsDisplayProps) {
     time,
   } = recipe;
 
+  //toggle styles between complete and incomplete steps
+  const handleCompleted = (id: number) => {
+    setStyle((prevState) => ({
+      //@ts-ignore
+      ...style,
+      //@ts-ignore
+      [id]: !prevState[id],
+    }));
+  };
+
   return (
     <div>
       {!recipe ? (
         "Loading..."
       ) : (
-        <div>
-          <h1>{name}</h1>
-          <img src={image} alt={name} style={{ width: "30%" }} />
-          <p>difficulty: {difficulty}</p>
-          <p>rating: {rating}</p>
-          <p>{time}</p>
-          <p>portions: {portions}</p>
+        <div className="recipeDetailsContainer">
+          <div className="recipeDetailsLeftContainer">
+            <img className="recipeDetailsImage" src={image} alt={name} />
 
-          {!instructions ? (
-            "Loading..."
-          ) : (
-            <div style={{ border: "1px solid black" }}>
-              <h4>Ingredients</h4>
-              {ingredients.map((ingredient) => {
-                return (
-                  <div style={{ display: "flex" }} key={ingredient.id}>
-                    <p>{ingredient.name}: </p>
-                    <p>{ingredient.quantity}</p>
-                    <p>{ingredient.measurement}</p>
-                  </div>
-                );
-              })}
+            <div className="recipeDetailsInfoContainer">
+              <p className="recipeDetailsInfo">difficulty: {difficulty}</p>
+
+              <Rating rating={rating} />
+              <p className="recipeDetailsInfo">{time}</p>
+              <p className="recipeDetailsInfo">portions: {portions}</p>
             </div>
-          )}
 
-          <p>{description}</p>
+            {!ingredients ? (
+              "Loading..."
+            ) : (
+              <div className="recipeDetailsIngredientsContainer">
+                <h4>Ingredients</h4>
+                {ingredients.map((ingredient: IngredientState) => {
+                  return (
+                    <div
+                      className="recipeDetailsIngredientsList"
+                      key={ingredient.id}
+                    >
+                      <p>
+                        <strong>{ingredient.name}:</strong>{" "}
+                        {ingredient.quantity} {ingredient.measurement}
+                      </p>
 
+                      {/* {ingredient.name}: {ingredient.quantity}{" "}
+                      {ingredient.measurement} */}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
           {!instructions ? (
             <Loading />
           ) : (
-            <div style={{ border: "1px solid black", margin: "20px" }}>
+            <div className="recipeDetailsRightContainer">
+              <h1 className="recipeDetailsTitle">{name}</h1>
+              <p className="recipeDetailsDescription">{description}</p>
               <h4>Instructions</h4>
-              {instructions.map((instruction) => {
+              {instructions.map((instruction: InstructionsState) => {
                 return (
-                  <div style={{ display: "flex" }} key={instruction.id}>
-                    <p>{instruction.step}.</p>
-                    <p>{instruction.description}</p>
+                  <div
+                    className="instructionDetails"
+                    key={instruction.id}
+                    style={{
+                      //@ts-ignore
+                      color: style[`${instruction.id}`] ? "grey" : "initial",
+                      //@ts-ignore
+                      border: style[`${instruction.id}`]
+                        ? "4px solid grey"
+                        : "4px solid black",
+                    }}
+                    onClick={() => handleCompleted(instruction.id)}
+                  >
+                    {`${instruction.step}. ${instruction.description}`}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      className="checkIcon"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
                   </div>
                 );
               })}
@@ -73,6 +126,6 @@ function RecipeDetails(props: RecipeDetailsDisplayProps) {
       )}
     </div>
   );
-}
+};
 
 export default RecipeDetails;

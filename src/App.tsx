@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Homepage from "./pages/Homepage";
+import Homepage from "./pages/HomePage/Homepage";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { getUserWithStoredToken } from "./store/user/thunks";

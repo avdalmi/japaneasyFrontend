@@ -6,12 +6,14 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Loading from "../Loading/Loading";
+import Rating from "../Rating/Rating";
+import "./RecipeCard.css";
 
 interface RecipeDisplayProps {
   recipe: RecipeState;
 }
 
-function RecipeCard(props: RecipeDisplayProps) {
+const RecipeCard = (props: RecipeDisplayProps) => {
   // console.log("props", props.recipe);
 
   return (
@@ -20,26 +22,44 @@ function RecipeCard(props: RecipeDisplayProps) {
         <Loading />
       ) : (
         <Container>
-          <Card style={{ width: "18rem", border: "1px solid black" }}>
+          <Card className="recipeCardContainer">
             <Card.Img
               variant="top"
               src={props.recipe.image}
-              style={{ width: "10rem" }}
+              className="recipeCardImage"
             />
-            <Card.Body>
-              <Card.Title>{props.recipe.name}</Card.Title>
-              <Card.Subtitle>
+            <Card.Body className="recipeCardBody">
+              <div className="recipeCardTitleRating">
+                <Card.Title className="recipeCardTitle">
+                  {props.recipe.name}
+
+                  <Rating
+                    // @ts-ignore
+                    className="recipeCardRating"
+                    rating={props.recipe.rating}
+                  />
+                </Card.Title>
+              </div>
+
+              <Card.Subtitle className="recipeCardSubtitle">
                 {" "}
                 difficulty: {props.recipe.difficulty}
               </Card.Subtitle>
-              <Card.Subtitle>time: {props.recipe.time}</Card.Subtitle>
-              <Card.Subtitle>rating: {props.recipe.rating}</Card.Subtitle>
-              <Card.Text>
-                {props.recipe.description.substring(0, 150)}
+              <Card.Subtitle className="recipeCardSubtitle">
+                time: {props.recipe.time}
+              </Card.Subtitle>
+              {/* <Card.Subtitle className="recipeCardSubtitle">
+                <Rating rating={props.recipe.rating} />{" "}
+              </Card.Subtitle> */}
+
+              <Card.Text className="recipeCardText">
+                {props.recipe.description.substring(0, 150)}...
               </Card.Text>
 
               <Link to={`/recipes/${props.recipe.id}`}>
-                <Button variant="secondary">Go to recipe</Button>
+                <Button variant="secondary" className="recipeCardButton">
+                  Go to recipe
+                </Button>
               </Link>
             </Card.Body>
           </Card>
@@ -47,6 +67,6 @@ function RecipeCard(props: RecipeDisplayProps) {
       )}
     </div>
   );
-}
+};
 
 export default RecipeCard;

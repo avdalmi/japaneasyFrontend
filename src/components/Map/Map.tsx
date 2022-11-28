@@ -14,8 +14,9 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { RecipeState } from "../../store/recipes/slice";
 import { Coordinates, MapCenter } from "../../types/Maps";
+import Rating from "../Rating/Rating";
 
-export default function Map() {
+const Map: React.FC = () => {
   const center = [37.7608, 140.4748];
   const prefectures = useAppSelector(selectPrefectures);
 
@@ -165,7 +166,7 @@ export default function Map() {
                         style={{ width: "200px" }}
                       />
                       <p>difficulty: {rec.difficulty}</p>
-                      <p>{rec.rating}</p>
+                      <Rating rating={rec.rating} />
                       <p>{rec.time}</p>
                       <p>{rec.description.substring(0, 650)}</p>
                       <Link to={`/recipes/${rec.id}`}>
@@ -181,4 +182,6 @@ export default function Map() {
       )}
     </div>
   );
-}
+};
+
+export default Map;
