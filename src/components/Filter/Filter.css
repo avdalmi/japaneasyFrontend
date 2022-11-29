@@ -5,7 +5,7 @@
 .filterCategoryContainer {
   padding: 1rem;
   border: 1px solid grey;
-  height: 20rem;
+  /* height: 20rem; */
   margin: 15px 0 0 15px;
   border-radius: 15px;
 }
@@ -15,7 +15,7 @@
   align-items: center;
   align-self: center;
 }
-.catCheckbox {
+.filterCheckbox {
   margin: 0.5rem;
 }
 .catItemTitle {
@@ -24,7 +24,7 @@
   font-size: 16px;
 }
 
-.filterCategoryTitle {
+.filterTitle {
   font-size: 16px;
   font-weight: 800;
 }

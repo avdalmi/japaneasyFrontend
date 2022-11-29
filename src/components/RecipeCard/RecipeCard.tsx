@@ -1,14 +1,12 @@
 import React from "react";
-// import { Recipe } from "../../types/Recipes";
 import { RecipeState } from "../../store/recipes/slice";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import Loading from "../Loading/Loading";
 import Rating from "../Rating/Rating";
 import "./RecipeCard.css";
-import loadingNoodles from "../Loading/39520-japanese-noodles.json";
+import { GoButton } from "../../styles/Buttons";
+
 interface RecipeDisplayProps {
   recipe: RecipeState;
 }
@@ -53,9 +51,9 @@ const RecipeCard = (props: RecipeDisplayProps) => {
 
             <div className="recipeDetailsButton">
               <Link to={`/recipes/${props.recipe.id}`}>
-                <Button variant="secondary" className="recipeCardButton">
+                <GoButton className="recipeCardButton" width={300}>
                   Go to recipe
-                </Button>
+                </GoButton>
               </Link>
             </div>
           </Card.Body>

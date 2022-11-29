@@ -4,7 +4,7 @@ import { CategoryState, RecipeState } from "../../store/recipes/slice";
 import "./Filter.css";
 import Loading from "../Loading/Loading";
 import * as loadingNoodles from "../Loading/39520-japanese-noodles.json";
-
+import "../RecipeCard/RecipeCard.css";
 interface FilterState {
   id: number;
   filtered: boolean;
@@ -16,37 +16,73 @@ interface FilterProps {
   filterTitle: string;
 }
 
-// const difficultyLevels = [
-//   { id: 1, level: "easy" },
-//   { id: 2, level: "medium" },
-//   { id: 3, level: "hard" },
-// ];
+interface DifficultyFilterState {
+  id: number;
+  level: string;
+  filtered: boolean;
+}
+interface DifficultyState {
+  id: number;
+  level: string;
+}
 
 const Filter = (props: FilterProps) => {
   const recipes = props.recipes;
   const categories = props.categories;
 
-  const [filterSettings, setFilterSettings] = useState<FilterState[]>([]);
+  const difficultyLevels = [
+    { id: 9, level: "easy" },
+    { id: 10, level: "medium" },
+    { id: 11, level: "hard" },
+  ];
+
+  const [categoryFilterSettings, setCategoryFilterSettings] = useState<
+    FilterState[]
+  >([]);
+  const [difficultyFilterSettings, setDifficultyFilterSetting] = useState<
+    DifficultyFilterState[]
+  >([]);
 
   useEffect(() => {
-    getFilterState();
+    getCategoryFilterState();
   }, [categories]);
 
-  const getFilterState = () => {
-    const stateObject = categories.map((i) => {
-      return { id: i.id, filtered: true };
+  useEffect(() => {
+    getDifficultyFilterState();
+  }, []);
+
+  const getCategoryFilterState = () => {
+    const stateObject = categories.map((category) => {
+      return { id: category.id, filtered: false };
     });
-    setFilterSettings(stateObject);
+    setCategoryFilterSettings(stateObject);
   };
 
-  const handleFilter = (r: CategoryState, e: boolean) => {
-    const newSettings = filterSettings.map((i) => {
-      if (i.id === r.id) {
-        return { ...i, filtered: e };
-      }
-      return i;
+  const getDifficultyFilterState = () => {
+    const stateObject = difficultyLevels.map((item) => {
+      return { id: item.id, filtered: false, level: item.level };
     });
-    setFilterSettings(newSettings);
+    setDifficultyFilterSetting(stateObject);
+  };
+
+  const handleCategoryFilter = (cat: CategoryState, event: boolean) => {
+    const newSettings = categoryFilterSettings.map((item) => {
+      if (item.id === cat.id) {
+        return { ...item, filtered: event };
+      }
+      return item;
+    });
+    setCategoryFilterSettings(newSettings);
+  };
+
+  const handleDifficultyFilter = (dif: DifficultyState, event: boolean) => {
+    const newSettings = difficultyFilterSettings.map((item) => {
+      if (item.id === dif.id) {
+        return { ...item, filtered: event };
+      }
+      return item;
+    });
+    setDifficultyFilterSetting(newSettings);
   };
 
   const renderCategoryFilter = () => {
@@ -55,11 +91,11 @@ const Filter = (props: FilterProps) => {
       return (
         <div className="categoryItems" key={category.id}>
           <input
-            className="catCheckbox"
+            className="filterCheckbox"
             key={category.id}
             type="checkbox"
-            onChange={(e) => handleFilter(category, e.target.checked)}
-            checked={handleCheck(category)}
+            onChange={(e) => handleCategoryFilter(category, e.target.checked)}
+            checked={handleCategoryCheck(category)}
           ></input>
           <p className="catItemTitle">{category.name}</p>
         </div>
@@ -68,12 +104,31 @@ const Filter = (props: FilterProps) => {
     return categoryNames;
   };
 
-  const handleCheck = (category: CategoryState) => {
+  const renderDifficultyFilter = () => {
+    if (!difficultyLevels) return;
+    const difficultyNames = difficultyLevels.map((dif) => {
+      return (
+        <div className="categoryItems" key={dif.id}>
+          <input
+            className="filterCheckbox"
+            key={dif.id}
+            type="checkbox"
+            onChange={(e) => handleDifficultyFilter(dif, e.target.checked)}
+            checked={handleDifficultyCheck(dif)}
+          ></input>
+          <p className="catItemTitle">{dif.level}</p>
+        </div>
+      );
+    });
+    return difficultyNames;
+  };
+
+  const handleCategoryCheck = (category: CategoryState) => {
     let filterValue = false;
-    if (filterSettings === undefined) {
+    if (categoryFilterSettings === undefined) {
       return filterValue;
     }
-    filterSettings.map((filterState: FilterState) => {
+    categoryFilterSettings.map((filterState: FilterState) => {
       if (filterState.id === category.id) {
         filterValue = filterState.filtered;
       }
@@ -81,54 +136,64 @@ const Filter = (props: FilterProps) => {
     return filterValue;
   };
 
+  const handleDifficultyCheck = (difficulty: DifficultyState) => {
+    let filterValue = false;
+    if (difficultyFilterSettings === undefined) {
+      return filterValue;
+    }
+    difficultyFilterSettings.map((filterState: DifficultyFilterState) => {
+      if (filterState.id === difficulty.id) {
+        filterValue = filterState.filtered;
+      }
+    });
+    return filterValue;
+  };
+
+  const renderSelectedCategoryFilter = categoryFilterSettings.some(
+    (item) => item.filtered
+  );
+  const renderSelectedDifficultyFilter = difficultyFilterSettings.some(
+    (item) => item.filtered
+  );
+  // console.log("renderselected", renderSelectedDifficultyFilter);
+
   const renderRecipeCards = () => {
     const recipe = recipes.map((rec) => {
-      const filterState = filterSettings.find((filterState: FilterState) => {
-        if (filterState.id === rec.categoryId) {
+      if (!renderSelectedCategoryFilter || !renderSelectedDifficultyFilter) {
+        return <RecipeCard recipe={rec} />;
+      }
+      const filterState = categoryFilterSettings.find(({ id }) => {
+        if (id === rec.categoryId) {
           return true;
         }
       });
-      if (!filterState || filterState.filtered === false) {
-        return <></>;
+      const difficultyState = difficultyFilterSettings.find(({ level }) => {
+        if (level === rec.difficulty) {
+          return true;
+        }
+      });
+      if (
+        !filterState ||
+        !difficultyState ||
+        filterState.filtered === false ||
+        difficultyState.filtered === false
+      ) {
+        return;
       }
       return <RecipeCard recipe={rec} />;
     });
     return recipe;
   };
 
-  // const renderDifficultyFilter = () => {
-  //   difficultyLevels.map((dif) => {
-  //     return (
-  //       <div
-  //         className="difItems"
-  //         key={dif.id}
-  //         style={{
-  //           display: "flex",
-  //         }}
-  //       >
-  //         <input
-  //           className="difCheckbox"
-  //           key={dif.id}
-  //           type="checkbox"
-  //           onChange={(e) => handleFilter(dif, e.target.checked)}
-  //           checked={handleCheck(dif)}
-  //         ></input>
-  //         <p className="catItemTitle">{dif.level}</p>
-  //       </div>
-  //     );
-  //   });
-  // };
-
   return (
     <div>
-      {/* {!props ? (
-        <Loading animationData={loadingNoodles} />
-      ) : ( */}
       <div>
         <div className="filterContainer">
           <div className="filterCategoryContainer">
-            <p className="filterCategoryTitle">{props.filterTitle}</p>
-            <div className="filter">{renderCategoryFilter()}</div>
+            <p className="filterTitle">{props.filterTitle}</p>
+            <div className="Filter">{renderCategoryFilter()}</div>
+            <p className="filterTitle">Filter by difficulty</p>
+            <div className="Filter">{renderDifficultyFilter()}</div>
           </div>
 
           <div className="filterRecipeContainer">
@@ -136,7 +201,6 @@ const Filter = (props: FilterProps) => {
           </div>
         </div>
       </div>
-      {/* )} */}
     </div>
   );
 };
