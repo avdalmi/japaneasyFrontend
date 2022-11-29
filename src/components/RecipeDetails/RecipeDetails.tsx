@@ -11,6 +11,7 @@ import { useAppSelector, useAppDispatch } from "../../hooks";
 import { selectAllTips, selectTipById } from "../../store/tips/slice";
 import { getAllTips } from "../../store/tips/thunks";
 import { Link } from "react-router-dom";
+import * as loadingNoodles from "../Loading/39520-japanese-noodles.json";
 
 interface Props {
   recipe: CompleteRecipeState;
@@ -52,7 +53,7 @@ const RecipeDetails: React.FC<Props> = ({ recipe }) => {
   return (
     <div>
       {!recipe ? (
-        "Loading..."
+        <Loading animationData={loadingNoodles} />
       ) : (
         <div className="recipeDetailsContainer">
           <div className="recipeDetailsLeftContainer">
@@ -67,7 +68,7 @@ const RecipeDetails: React.FC<Props> = ({ recipe }) => {
             </div>
 
             {!ingredients ? (
-              "Loading..."
+              <Loading animationData={loadingNoodles} />
             ) : (
               <div className="recipeDetailsIngredientsContainer">
                 <h4>Ingredients</h4>
@@ -88,7 +89,7 @@ const RecipeDetails: React.FC<Props> = ({ recipe }) => {
             )}
           </div>
           {!instructions ? (
-            <Loading />
+            <Loading animationData={loadingNoodles} />
           ) : (
             <div className="recipeDetailsRightContainer">
               <h1 className="recipeDetailsTitle">{name}</h1>

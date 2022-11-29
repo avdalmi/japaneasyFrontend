@@ -1,29 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import TipDetails from "../components/TipDetails/TipDetails";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { selectTipById } from "../store/tips/slice";
+import { selectTipById, TipsState } from "../store/tips/slice";
 import { getTipsById } from "../store/tips/thunks";
+import Loading from "../components/Loading/Loading";
+import loadingNoodles from "../components/Loading/39520-japanese-noodles.json";
 
 function TipsDetailPage() {
-  const { id } = useParams() as any;
+  const { id } = useParams<string>();
+  const newId = Number(id);
   const tip = useAppSelector(selectTipById);
   //   console.log("tip selector", tip);
   // console.log("id", id)
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getTipsById(parseInt(id)));
-  }, [dispatch, id]);
+    dispatch(getTipsById(newId));
+  }, [dispatch, newId]);
 
+  const [showTipsDetails, setshowTipsDetails] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setshowTipsDetails(true);
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <div>
-      {!tip ? (
-        "Loading..."
+      {!showTipsDetails ? (
+        <Loading animationData={loadingNoodles} />
       ) : (
         <div>
-          {/* @ts-ignore */}
-          <TipDetails tipDetail={tip} />
+          <TipDetails tipDetail={tip as any} />
         </div>
       )}
     </div>

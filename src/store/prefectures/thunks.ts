@@ -8,8 +8,9 @@ export const getAllPrefectures =
     try {
       const response = await axios.get(`${apiUrl}/prefectures`);
       //   console.log("response", response);
-      //   dispatch(fetchAllRecipes(response.data.recipes));
-      dispatch(fetchAllPrefectures(response.data.prefectures));
+      setTimeout(() => {
+        dispatch(fetchAllPrefectures(response.data.prefectures));
+      }, 1200);
     } catch (e) {
       if (e instanceof Error) console.log("error message", e.message);
     }

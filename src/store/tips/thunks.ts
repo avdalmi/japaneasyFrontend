@@ -20,6 +20,7 @@ export const getTipsById =
     try {
       const response = await axios.get(`${apiUrl}/tips/${id}`);
       //   console.log("response", response);
+
       dispatch(fetchTipsById(response.data.tipById));
     } catch (e) {
       if (e instanceof Error) console.log("error message", e.message);

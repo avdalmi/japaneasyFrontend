@@ -24,7 +24,7 @@ export const tipsSlice = createSlice({
   initialState,
   reducers: {
     fetchAllTips: (state, action: PayloadAction<TipsState[]>) => {
-      state.tips = [...action.payload];
+      state.tips = action.payload;
       //   console.log("current State", current(state));
     },
     fetchTipsById: (state, action: PayloadAction<TipsState[]>) => {

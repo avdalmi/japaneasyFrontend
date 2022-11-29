@@ -83,8 +83,10 @@ export const recipeSlice = createSlice({
 });
 
 //Selectors
-export const selectRecipe = (state: RootState): RecipeState[] =>
-  state.recipe.recipes;
+//@ts-ignore
+export const selectRecipe = (state: RootState): RecipeState[] => {
+  return state.recipe.recipes;
+};
 
 export const selectFullRecipe = (state: RootState) => {
   // console.log("rootstate", state.recipe)

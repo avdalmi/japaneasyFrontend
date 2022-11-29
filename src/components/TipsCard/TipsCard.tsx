@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 import Loading from "../Loading/Loading";
 import "./TipsCard.css";
 import { Col, Row } from "react-bootstrap";
+import * as loadingNoodles from "../Loading/39520-japanese-noodles.json";
 
 interface TipsDisplayProps {
   tips: TipsState;
@@ -16,7 +17,7 @@ function TipsCard(props: TipsDisplayProps) {
   return (
     <div>
       {!props ? (
-        <Loading />
+        <Loading animationData={loadingNoodles} />
       ) : (
         <Row className="tipsCardContainer">
           <Card className="tipsCardCardContainer">

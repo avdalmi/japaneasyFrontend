@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import { CategoryState, RecipeState } from "../../store/recipes/slice";
 import "./Filter.css";
+import Loading from "../Loading/Loading";
+import * as loadingNoodles from "../Loading/39520-japanese-noodles.json";
 
 interface FilterState {
   id: number;
@@ -119,16 +121,22 @@ const Filter = (props: FilterProps) => {
 
   return (
     <div>
-      <div className="filterContainer">
-        <div className="filterCategoryContainer">
-          <p className="filterCategoryTitle">{props.filterTitle}</p>
-          <div className="filter">{renderCategoryFilter()}</div>
-        </div>
+      {/* {!props ? (
+        <Loading animationData={loadingNoodles} />
+      ) : ( */}
+      <div>
+        <div className="filterContainer">
+          <div className="filterCategoryContainer">
+            <p className="filterCategoryTitle">{props.filterTitle}</p>
+            <div className="filter">{renderCategoryFilter()}</div>
+          </div>
 
-        <div className="filterRecipeContainer">
-          <div className="filterRecipeItems">{renderRecipeCards()}</div>
+          <div className="filterRecipeContainer">
+            <div className="filterRecipeItems">{renderRecipeCards()}</div>
+          </div>
         </div>
       </div>
+      {/* )} */}
     </div>
   );
 };

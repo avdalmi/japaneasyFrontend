@@ -96,7 +96,7 @@ const Map: React.FC = () => {
         })}
       </MapContainer>
       {!images ? null : (
-        <Modal show={show} onHide={handleClose}>
+        <Modal size="lg" show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title id="example-modal-sizes-title-lg">{title}</Modal.Title>
           </Modal.Header>

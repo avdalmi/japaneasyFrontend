@@ -15,6 +15,7 @@ import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 import MapPage from "./pages/MapPage";
 import TipsPage from "./pages/TipsPage";
 import TipsDetailPage from "./pages/TipsDetailPage";
+import * as loadingNoodles from "./components/Loading/39520-japanese-noodles.json";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -27,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      {isLoading ? <Loading /> : null}
+      {isLoading ? <Loading animationData={loadingNoodles} /> : null}
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />

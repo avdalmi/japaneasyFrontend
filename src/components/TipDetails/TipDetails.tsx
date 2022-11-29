@@ -1,17 +1,18 @@
 import React from "react";
 import { TipsState } from "../../store/tips/slice";
 import Loading from "../Loading/Loading";
+import * as loadingNoodles from "../Loading/39520-japanese-noodles.json";
 
 interface TipDetailDisplayProps {
   tipDetail: TipsState;
 }
 
 function TipDetails(props: TipDetailDisplayProps) {
-  //   console.log("props", props);
+  console.log("props", props.tipDetail);
   return (
     <div>
       {!props ? (
-        <Loading />
+        <Loading animationData={loadingNoodles} />
       ) : (
         <div>
           <h1>{props.tipDetail.name}</h1>

@@ -29,6 +29,12 @@ const NavBar: React.FC = () => {
             <Nav.Link as={NavLink} to="/recipes">
               Recipes
             </Nav.Link>
+            <Nav.Link as={NavLink} to="/information">
+              Prefecture Explorer
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/tips">
+              Tips & Tricks
+            </Nav.Link>
             {/* {token && (
                             <Nav.Link as={NavLink} to='/manager'>
                                 Manager

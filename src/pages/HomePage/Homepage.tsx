@@ -1,19 +1,9 @@
-import React, { useState } from "react";
 import CarouselComp from "../../components/Carousel/Carousel";
 import { Link } from "react-router-dom";
-import SearchBar from "../../components/SearchBar/SearchBar";
 import { Breadcrumb } from "react-bootstrap";
 import "./HomePage.css";
 
 function Homepage() {
-  // const [term, setTerm] = useState("");
-
-  // //@ts-ignore
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-  //   console.log("term", term);
-  // };
-
   return (
     <div>
       <CarouselComp />
@@ -46,7 +36,7 @@ function Homepage() {
           <img />
         </div> */}
       </div>
-      <Breadcrumb />{" "}
+      <Breadcrumb />
     </div>
   );
 }
