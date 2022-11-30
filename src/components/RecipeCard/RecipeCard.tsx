@@ -16,9 +16,6 @@ const RecipeCard = (props: RecipeDisplayProps) => {
 
   return (
     <div>
-      {/* {!props ? (
-        <Loading animationData={loadingNoodles} />
-      ) : ( */}
       <Container>
         <Card className="recipeCardContainer">
           <Card.Img

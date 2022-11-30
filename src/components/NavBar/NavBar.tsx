@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
-import LoggedIn from "../Loggedin/Loggedin";
-import LoggedOut from "../LoggedOut/LoggedOut";
+import Logout from "../Logout/Logout";
+import Login from "../Login/Login";
 import { useSelector } from "react-redux";
-import { selectToken } from "../../store/user/selectors";
+import { selectToken } from "../../store/user/slice";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -11,7 +11,7 @@ import logo from "../../images/logo.jpeg";
 const NavBar: React.FC = () => {
   const token = useSelector(selectToken);
 
-  const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
+  // const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
   return (
     <Navbar expand="lg" variant="light" bg="light">
       <Container>
@@ -35,13 +35,13 @@ const NavBar: React.FC = () => {
             <Nav.Link as={NavLink} to="/tips">
               Tips & Tricks
             </Nav.Link>
-            {/* {token && (
-                            <Nav.Link as={NavLink} to='/manager'>
-                                Manager
-                            </Nav.Link>
-                        )} */}
+            {token && (
+              <Nav.Link as={NavLink} to="/profile">
+                Profile
+              </Nav.Link>
+            )}
 
-            {loginLogoutControls}
+            {token ? <Logout /> : <Login />}
           </Nav>
         </Navbar.Collapse>
       </Container>

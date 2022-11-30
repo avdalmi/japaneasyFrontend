@@ -7,30 +7,11 @@ import {
 } from "../appState/thunks";
 
 import { AppDispatch, RootState } from "..";
+import { loginSuccess, logOutSuccess, tokenStillValid } from "./slice";
 
-const loginSuccess = (userWithToken: {
-  firstName: string;
-  lastName: string;
-  email: string;
-  token: string;
-  id: number;
-}) => {
-  return {
-    type: "LOGIN_SUCCESS",
-    payload: userWithToken,
-  };
-};
-
-export const logOut = () => ({ type: "LOG_OUT" });
-
-export const signUp = (
-  firstName: string,
-  lastName: string,
-  email: string,
-  password: string
-) => {
-  console.log(firstName, email, password);
-  return async (dispatch: AppDispatch, getState: () => RootState) => {
+export const signUp =
+  (firstName: string, lastName: string, email: string, password: string) =>
+  async (dispatch: AppDispatch, getState: () => RootState) => {
     dispatch(appLoading());
     try {
       const response = await axios.post(`${apiUrl}/signup`, {
@@ -39,27 +20,14 @@ export const signUp = (
         email,
         password,
       });
-
-      dispatch(
-        loginSuccess({
-          firstName: response.data.firstName,
-          lastName: response.data.lastName,
-          email: response.data.email,
-          token: response.data.token,
-          id: response.data.id,
-        })
-      );
+      console.log("response", response);
+      dispatch(loginSuccess(response.data));
       dispatch(showAlertWithTimeout("Account created", "success"));
       dispatch(appDoneLoading());
-    } catch (error) {
-      if (error instanceof Error) {
-        console.log(error.message);
-        dispatch(showAlertWithTimeout(error.message, "error"));
-      }
-      dispatch(appDoneLoading());
+    } catch (e) {
+      if (e instanceof Error) console.log("error message", e.message);
     }
   };
-};
 
 export const login = (email: string, password: string) => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
@@ -74,7 +42,7 @@ export const login = (email: string, password: string) => {
 
       dispatch(
         showAlertWithTimeout(
-          `Welcome back ${response.data.firstName}! 😄`,
+          `Welcome back ${response.data.firstName}!`,
           "success"
         )
       );
@@ -91,7 +59,8 @@ export const login = (email: string, password: string) => {
 export const getUserWithStoredToken = () => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
     const token = localStorage.getItem("token");
-    if (!token) return;
+    // const token = selectToken(getState());
+    if (token === null) return;
 
     dispatch(appLoading());
     try {
@@ -100,25 +69,15 @@ export const getUserWithStoredToken = () => {
       const response = await axios.get(`${apiUrl}/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-
-      // token is still valid
-      const user = {
-        token: token,
-        firstName: response.data.firstName,
-        lastName: response.data.lastName,
-        email: response.data.email,
-        id: response.data.id,
-        imgUrl: response.data.imgUrl,
-      };
-      dispatch(loginSuccess(user));
+      dispatch(tokenStillValid({ user: response.data }));
       dispatch(appDoneLoading());
     } catch (error) {
       if (error instanceof Error) {
         console.log(error.message);
+      } else {
+        console.log(error);
       }
-      // if we get a 4xx or 5xx response,
-      // get rid of the token by logging out
-      dispatch(logOut());
+      dispatch(logOutSuccess());
       dispatch(appDoneLoading());
     }
   };

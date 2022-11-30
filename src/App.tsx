@@ -3,23 +3,20 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Homepage from "./pages/HomePage/Homepage";
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "./hooks";
+import { useAppDispatch } from "./hooks";
 import { getUserWithStoredToken } from "./store/user/thunks";
 import Login from "../src/pages/Login";
 import SignUp from "../src/pages/SignUp";
-import { selectAppLoading } from "./store/appState/selectors";
 import NavBar from "./components/NavBar/NavBar";
-import Loading from "./components/Loading/Loading";
 import RecipeExpPage from "./pages/RecipeExpPage";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 import MapPage from "./pages/MapPage";
 import TipsPage from "./pages/TipsPage";
 import TipsDetailPage from "./pages/TipsDetailPage";
-import * as loadingNoodles from "./components/Loading/39520-japanese-noodles.json";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {
   const dispatch = useAppDispatch();
-  const isLoading = useAppSelector(selectAppLoading);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
@@ -28,7 +25,6 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      {isLoading ? <Loading animationData={loadingNoodles} /> : null}
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
@@ -38,6 +34,7 @@ function App() {
         <Route path="/information" element={<MapPage />} />
         <Route path="/tips" element={<TipsPage />} />
         <Route path="/tips/:id" element={<TipsDetailPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </div>
   );

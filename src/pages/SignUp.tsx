@@ -1,6 +1,6 @@
 import { useState, useEffect, SyntheticEvent } from "react";
-import { signUp } from "../../src/store/user/thunks";
-import { selectToken } from "../../src/store/user/selectors";
+import { signUp } from "../store/user/thunks";
+import { selectToken } from "../../src/store/user/slice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { useNavigate, Link } from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -15,8 +15,9 @@ export default function SignUp() {
   const [lastName, setLastName] = useState("");
 
   const dispatch = useAppDispatch();
-  const token = useAppSelector(selectToken);
   const navigate = useNavigate();
+
+  const token = useAppSelector(selectToken);
 
   useEffect(() => {
     if (token !== null) {
@@ -24,15 +25,10 @@ export default function SignUp() {
     }
   }, [token, navigate]);
 
-  function submitForm(event: SyntheticEvent) {
+  const submitForm = (event: SyntheticEvent) => {
     event.preventDefault();
-
     dispatch(signUp(firstName, lastName, email, password));
-
-    setEmail("");
-    setPassword("");
-    setFirstName("");
-  }
+  };
 
   return (
     <div>
