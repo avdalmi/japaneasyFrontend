@@ -7,7 +7,12 @@ import {
 } from "../appState/thunks";
 
 import { AppDispatch, RootState } from "..";
-import { loginSuccess, logOutSuccess, tokenStillValid } from "./slice";
+import {
+  loginSuccess,
+  logOutSuccess,
+  tokenStillValid,
+  userWithRecipes,
+} from "./slice";
 
 export const signUp =
   (firstName: string, lastName: string, email: string, password: string) =>
@@ -61,7 +66,7 @@ export const getUserWithStoredToken = () => {
     const token = localStorage.getItem("token");
     // const token = selectToken(getState());
     if (token === null) return;
-
+    // console.log("getstate", getState().user);
     dispatch(appLoading());
     try {
       // if we do have a token,
@@ -69,7 +74,9 @@ export const getUserWithStoredToken = () => {
       const response = await axios.get(`${apiUrl}/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      dispatch(tokenStillValid({ user: response.data }));
+      // console.log("response", response);
+      dispatch(tokenStillValid({ profile: response.data }));
+      // dispatch(userWithRecipes({}))
       dispatch(appDoneLoading());
     } catch (error) {
       if (error instanceof Error) {
@@ -79,6 +86,32 @@ export const getUserWithStoredToken = () => {
       }
       dispatch(logOutSuccess());
       dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const getUserWithRecipe = () => {
+  return async (dispatch: AppDispatch, getState: () => RootState) => {
+    // const id = getState().user.profile?.id;
+    // console.log("getstate", getState().user.profile?.id);
+
+    const token = localStorage.getItem("token");
+    // console.log("this is token", token);
+    if (token === null) return;
+
+    try {
+      const response = await axios.get(`${apiUrl}/user/profile`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      // console.log("response", response);
+      // console.log("hello this is response");
+      dispatch(userWithRecipes(response.data));
+    } catch (e) {
+      if (e instanceof Error) {
+        console.log("error message", e.message);
+      } else {
+        console.log("error message", e);
+      }
     }
   };
 };

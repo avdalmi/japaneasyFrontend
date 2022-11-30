@@ -9,10 +9,12 @@ import { GoButton } from "../../styles/Buttons";
 
 interface RecipeDisplayProps {
   recipe: RecipeState;
+  removeFavoriteButton?: boolean;
+  removeSavedButton?: boolean;
 }
 
 const RecipeCard = (props: RecipeDisplayProps) => {
-  // console.log("props", props.recipe);
+  console.log("props", props.recipe);
 
   return (
     <div>
@@ -52,6 +54,15 @@ const RecipeCard = (props: RecipeDisplayProps) => {
                   Go to recipe
                 </GoButton>
               </Link>
+              {props.removeFavoriteButton ? (
+                <GoButton className="recipeCardButton" width={400}>
+                  unsave
+                </GoButton>
+              ) : (
+                <GoButton className="recipeCardButton" width={400}>
+                  save
+                </GoButton>
+              )}
             </div>
           </Card.Body>
         </Card>
