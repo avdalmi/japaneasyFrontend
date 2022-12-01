@@ -1,0 +1,20 @@
+.nav-link.active {
+  color: white !important;
+  background-color: grey !important;
+}
+.nav-link {
+  color: black !important;
+}
+
+.nav-link:hover {
+  color: black !important;
+  background-color: lightgrey !important;
+}
+
+.mapSectionContainer {
+  padding: 20px;
+}
+
+.tabPaneContent {
+  text-align: left;
+}

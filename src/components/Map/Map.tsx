@@ -28,7 +28,13 @@ const Map: React.FC = () => {
   const handleClose = () => setShow(false);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        margin: "50px",
+      }}
+    >
       <MapContainer
         center={center as MapCenter}
         zoom={5.5}

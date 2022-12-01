@@ -159,6 +159,7 @@ const Filter = (props: FilterProps) => {
 
   const renderRecipeCards = () => {
     const recipe = recipes.map((rec) => {
+      // console.log("rec", rec);
       if (!renderSelectedCategoryFilter || !renderSelectedDifficultyFilter) {
         return <RecipeCard recipe={rec} />;
       }

@@ -14,7 +14,7 @@ interface RecipeDisplayProps {
 }
 
 const RecipeCard = (props: RecipeDisplayProps) => {
-  console.log("props", props.recipe);
+  // console.log("props", props.recipe);
 
   return (
     <div>
@@ -40,9 +40,6 @@ const RecipeCard = (props: RecipeDisplayProps) => {
             <Card.Subtitle className="recipeCardSubtitle">
               time: {props.recipe.time}
             </Card.Subtitle>
-            {/* <Card.Subtitle className="recipeCardSubtitle">
-                <Rating rating={props.recipe.rating} />{" "}
-              </Card.Subtitle> */}
 
             <Card.Text className="recipeCardText">
               {props.recipe.description.substring(0, 150)}...
@@ -54,7 +51,7 @@ const RecipeCard = (props: RecipeDisplayProps) => {
                   Go to recipe
                 </GoButton>
               </Link>
-              {props.removeFavoriteButton ? (
+              {props.removeSavedButton ? (
                 <GoButton className="recipeCardButton" width={400}>
                   unsave
                 </GoButton>
@@ -67,7 +64,6 @@ const RecipeCard = (props: RecipeDisplayProps) => {
           </Card.Body>
         </Card>
       </Container>
-      {/* )} */}
     </div>
   );
 };

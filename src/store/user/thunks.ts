@@ -103,7 +103,7 @@ export const getUserWithRecipe = () => {
       const response = await axios.get(`${apiUrl}/user/profile`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      // console.log("response", response);
+      console.log("response", response);
       // console.log("hello this is response");
       dispatch(userWithRecipes(response.data));
     } catch (e) {

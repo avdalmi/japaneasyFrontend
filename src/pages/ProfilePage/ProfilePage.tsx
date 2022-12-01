@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks";
 import {
   ProfileState,
@@ -12,8 +12,8 @@ import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 import Col from "react-bootstrap/Col";
-import { RecipeState } from "../../store/recipes/slice";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
+import "./ProfilePage.css";
 
 function ProfilePage() {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ function ProfilePage() {
   const user = useAppSelector(selectUser);
   const fullProfile = useAppSelector(selectFullProfile);
   // console.log("full user", user);
-  console.log("full profile", fullProfile);
+  // console.log("full profile", fullProfile);
   const token = useAppSelector(selectToken);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function ProfilePage() {
     if (!fullProfile) {
       return;
     }
-    const returnProfile = fullProfile.map((profile: ProfileState) => {
+    const returnProfilesRecipes = fullProfile.map((profile: ProfileState) => {
       // console.log("return profile", profile);
       if (profile.isSaved === true) {
         return (
@@ -47,7 +47,7 @@ function ProfilePage() {
         );
       }
     });
-    return returnProfile;
+    return returnProfilesRecipes;
   };
 
   const getUsersFavoriteRecipes = () => {
@@ -62,6 +62,7 @@ function ProfilePage() {
     });
     return returnProfile;
   };
+
   return (
     <div>
       <h1>Hello {user?.firstName}!</h1>

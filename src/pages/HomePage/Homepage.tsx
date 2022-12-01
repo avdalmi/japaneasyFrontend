@@ -16,7 +16,7 @@ function Homepage() {
 
         <div className="homePageNavItemContainer item2">
           <Link to="/information">
-            <h3>Prefecture Information</h3>
+            <h3>Get to know Japan</h3>
           </Link>
         </div>
 

@@ -10,7 +10,7 @@ import SignUp from "../src/pages/SignUp";
 import NavBar from "./components/NavBar/NavBar";
 import RecipeExpPage from "./pages/RecipeExpPage";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
-import MapPage from "./pages/MapPage";
+import MapPage from "./pages/MapPage/MapPage";
 import TipsPage from "./pages/TipsPage";
 import TipsDetailPage from "./pages/TipsDetailPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";

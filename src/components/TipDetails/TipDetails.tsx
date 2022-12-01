@@ -8,7 +8,7 @@ interface TipDetailDisplayProps {
 }
 
 function TipDetails(props: TipDetailDisplayProps) {
-  console.log("props", props.tipDetail);
+  // console.log("props", props.tipDetail);
   return (
     <div>
       {!props ? (

@@ -8,9 +8,9 @@ import Loading from "../Loading/Loading";
 import "./RecipeDetails.css";
 import Rating from "../Rating/Rating";
 import { useAppSelector, useAppDispatch } from "../../hooks";
-import { selectAllTips, selectTipById } from "../../store/tips/slice";
+import { selectAllTips } from "../../store/tips/slice";
 import { getAllTips } from "../../store/tips/thunks";
-import { Link } from "react-router-dom";
+
 import * as loadingNoodles from "../Loading/39520-japanese-noodles.json";
 
 interface Props {
@@ -20,7 +20,7 @@ interface Props {
 const RecipeDetails: React.FC<Props> = ({ recipe }) => {
   // const recipe = props.recipe;
   const tipsbyId = useAppSelector(selectAllTips);
-  console.log("select tips by idd", tipsbyId);
+  // console.log("select tips by idd", tipsbyId);
 
   const dispatch = useAppDispatch();
   useEffect(() => {

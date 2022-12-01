@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../hooks";
 import { RecipeState } from "../../store/recipes/slice";
 import { TipsState } from "../../store/tips/slice";
 import { OnChange } from "../../types/EventListener";
-import Loading from "../Loading/Loading";
+
 import "./SearchBar.css";
-import TipDetails from "../TipDetails/TipDetails";
+
 interface SearchBarProps {
   recipes: RecipeState[] | null;
   ingredients: TipsState[] | null;
@@ -15,7 +14,7 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ recipes, ingredients }) => {
   // console.log("data", data);
   const [filteredData, setFilteredData] = useState<any[]>([]);
-  const [wordEntered, setWordEntered] = useState("");
+  const [wordEntered, setWordEntered] = useState<string>("");
 
   const handleFilterRecipes = (e: OnChange) => {
     const searchWord = e.target.value;
@@ -61,7 +60,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ recipes, ingredients }) => {
             <input
               type="text"
               placeholder="Search recipe"
-              //   value={wordEntered}
+              value={wordEntered}
               onChange={handleFilterRecipes}
             />
           </div>
@@ -90,7 +89,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ recipes, ingredients }) => {
             <input
               type="text"
               placeholder="Search ingredient"
-              //   value={wordEntered}
+              value={wordEntered}
               onChange={handleFilterIngredients}
             />
           </div>

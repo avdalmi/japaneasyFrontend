@@ -19,14 +19,8 @@ const Loading = (Props: LottiePlayerProps) => {
   };
   return (
     <div>
-      {/* @ts-ignore */}
       <Lottie options={defaultOptions} style={style} />
     </div>
-    // <div className="loading_spinner">
-    //   {/* @ts-ignore */}
-    //   <Lottie animationData={animationData} />
-    //   <Spinner animation="grow" role="status"></Spinner>
-    // </div>
   );
 };
 export default Loading;
