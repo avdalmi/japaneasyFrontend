@@ -64,9 +64,9 @@ export const login = (email: string, password: string) => {
 export const getUserWithStoredToken = () => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
     const token = localStorage.getItem("token");
-    // const token = selectToken(getState());
+
     if (token === null) return;
-    // console.log("getstate", getState().user);
+
     dispatch(appLoading());
     try {
       // if we do have a token,
@@ -74,9 +74,9 @@ export const getUserWithStoredToken = () => {
       const response = await axios.get(`${apiUrl}/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      // console.log("response", response);
+
       dispatch(tokenStillValid({ profile: response.data }));
-      // dispatch(userWithRecipes({}))
+      dispatch(userWithRecipes(response.data));
       dispatch(appDoneLoading());
     } catch (error) {
       if (error instanceof Error) {
@@ -90,27 +90,45 @@ export const getUserWithStoredToken = () => {
   };
 };
 
-export const getUserWithRecipe = () => {
+export const toggleSavedRecipeThunk = (saved: boolean, recipeId: number) => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
-    // const id = getState().user.profile?.id;
-    // console.log("getstate", getState().user.profile?.id);
-
-    const token = localStorage.getItem("token");
-    // console.log("this is token", token);
-    if (token === null) return;
+    const userId = getState().user.fullProfile?.id;
 
     try {
-      const response = await axios.get(`${apiUrl}/user/profile`, {
-        headers: { Authorization: `Bearer ${token}` },
+      const response = await axios.patch(`${apiUrl}/update`, {
+        saved,
+        recipeId,
+        userId,
       });
-      console.log("response", response);
-      // console.log("hello this is response");
-      dispatch(userWithRecipes(response.data));
+
+      dispatch(getUserWithStoredToken());
     } catch (e) {
       if (e instanceof Error) {
-        console.log("error message", e.message);
+        console.log(e.message);
       } else {
-        console.log("error message", e);
+        console.log(e);
+      }
+    }
+  };
+};
+
+export const addNewSaved = (saved: boolean, recipeId: number) => {
+  return async (dispatch: AppDispatch, getState: () => RootState) => {
+    const userId = getState().user.fullProfile?.id;
+    console.log("id is", userId, recipeId);
+    try {
+      const response = await axios.post(`${apiUrl}/addsaved`, {
+        recipeId,
+        userId,
+        saved,
+      });
+
+      dispatch(getUserWithStoredToken());
+    } catch (e) {
+      if (e instanceof Error) {
+        console.log(e.message);
+      } else {
+        console.log(e);
       }
     }
   };

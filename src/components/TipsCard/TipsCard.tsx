@@ -1,12 +1,10 @@
-import React from "react";
 import { TipsState } from "../../store/tips/slice";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import Container from "react-bootstrap/Container";
 import Loading from "../Loading/Loading";
 import "./TipsCard.css";
-import { Col, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import * as loadingNoodles from "../Loading/39520-japanese-noodles.json";
 
 interface TipsDisplayProps {

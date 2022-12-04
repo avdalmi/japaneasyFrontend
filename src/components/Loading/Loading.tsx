@@ -1,7 +1,6 @@
-import Spinner from "react-bootstrap/Spinner";
 import Lottie from "react-lottie";
-
 import { CSSProperties } from "react";
+
 interface LottiePlayerProps {
   animationData: any;
   style?: CSSProperties;

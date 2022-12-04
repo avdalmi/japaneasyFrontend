@@ -1,12 +1,8 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "..";
-import { RecipeState } from "../recipes/slice";
+import { RecipeState } from "../../types/Recipes";
 
-// import { UserState } from "./types";
-// const initialState: UserState = {
-//   state: null,
-// };
 export type TokenState = {};
 
 export type UserState = {
@@ -16,20 +12,21 @@ export type UserState = {
   password?: string;
   id?: number;
   token?: string | null | undefined;
+  recipes?: RecipeState[];
 };
 
-export type ProfileState = {
-  id: number;
-  isFavorite: boolean;
-  isSaved: true;
-  recipe: RecipeState;
-  user: UserState;
+export type FullProfileState = {
+  user?: UserState;
+  id?: number;
+  isFavorite?: boolean;
+  isSaved?: true;
+  recipe?: RecipeState[];
 };
 
 export interface InitialUserState {
   token: string | null;
   profile: UserState | null;
-  fullProfile: ProfileState[] | null;
+  fullProfile: FullProfileState | null;
 }
 
 const initialState: InitialUserState = {
@@ -43,11 +40,11 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     loginSuccess: (state, action) => {
-      console.log("action", action.payload);
+      // console.log("action", action.payload);
       localStorage.setItem("token", action.payload.token);
       state.token = action.payload.token;
       state.profile = action.payload.user;
-      console.log("current state", current(state));
+      // console.log("current state", current(state));
     },
     logOutSuccess: (state) => {
       localStorage.removeItem("token");
@@ -59,8 +56,12 @@ export const userSlice = createSlice({
     },
     userWithRecipes: (state, action) => {
       // console.log("action", action.payload);
-      state.fullProfile = action.payload.savedRecipes;
-      state.profile = action.payload.user;
+      state.fullProfile = action.payload;
+    },
+    updateSaved: (state, action: PayloadAction<FullProfileState>) => {
+      console.log("action", action.payload);
+      //@ts-ignore
+      state.fullProfile.recipe = [...state.fullProfile?.recipe, action.payload];
     },
   },
 });
@@ -74,9 +75,15 @@ export const selectUser = (state: RootState) => {
 };
 
 export const selectFullProfile = (state: RootState) => {
-  // console.log("staterootstate", state);
+  // console.log("staterootstate", state.user);
   return state.user.fullProfile;
 };
-export const { loginSuccess, logOutSuccess, tokenStillValid, userWithRecipes } =
-  userSlice.actions;
+
+export const {
+  loginSuccess,
+  logOutSuccess,
+  tokenStillValid,
+  userWithRecipes,
+  updateSaved,
+} = userSlice.actions;
 export default userSlice.reducer;

@@ -1,7 +1,7 @@
 import { useState, useEffect, SyntheticEvent } from "react";
-import { signUp } from "../store/user/thunks";
-import { selectToken } from "../../src/store/user/slice";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { signUp } from "../../store/user/thunks";
+import { selectToken } from "../../store/user/slice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useNavigate, Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";

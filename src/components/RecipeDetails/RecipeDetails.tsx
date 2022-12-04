@@ -3,14 +3,12 @@ import {
   CompleteRecipeState,
   IngredientState,
   InstructionsState,
-} from "../../store/recipes/slice";
+} from "../../types/Recipes";
 import Loading from "../Loading/Loading";
 import "./RecipeDetails.css";
 import Rating from "../Rating/Rating";
-import { useAppSelector, useAppDispatch } from "../../hooks";
-import { selectAllTips } from "../../store/tips/slice";
+import { useAppDispatch } from "../../hooks";
 import { getAllTips } from "../../store/tips/thunks";
-
 import * as loadingNoodles from "../Loading/39520-japanese-noodles.json";
 
 interface Props {
@@ -18,10 +16,6 @@ interface Props {
 }
 
 const RecipeDetails: React.FC<Props> = ({ recipe }) => {
-  // const recipe = props.recipe;
-  const tipsbyId = useAppSelector(selectAllTips);
-  // console.log("select tips by idd", tipsbyId);
-
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getAllTips());
@@ -41,7 +35,7 @@ const RecipeDetails: React.FC<Props> = ({ recipe }) => {
   } = recipe;
 
   //toggle styles between complete and incomplete steps
-  const handleCompleted = (id: number) => {
+  const toggleCompletedStatus = (id: number) => {
     setStyle((prevState) => ({
       //@ts-ignore
       ...style,
@@ -108,7 +102,7 @@ const RecipeDetails: React.FC<Props> = ({ recipe }) => {
                         ? "4px solid grey"
                         : "4px solid black",
                     }}
-                    onClick={() => handleCompleted(instruction.id)}
+                    onClick={() => toggleCompletedStatus(instruction.id)}
                   >
                     {`${instruction.step}. ${instruction.description}`}
                     <svg

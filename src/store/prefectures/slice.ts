@@ -1,21 +1,7 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "..";
-import { RecipeState } from "../recipes/slice";
-
-export interface PrefectureImage {
-  image: string;
-}
-
-export interface PrefectureState {
-  title: string;
-  description: string;
-  long: string;
-  lat: string;
-  image: PrefectureImage[];
-  recipes: RecipeState;
-  id: number;
-}
+import { PrefectureState } from "../../types/Prefectures";
 
 export interface PrefectureSliceState {
   prefectures: PrefectureState[];
@@ -31,13 +17,11 @@ export const prefectureSlice = createSlice({
   reducers: {
     fetchAllPrefectures: (state, action: PayloadAction<PrefectureState[]>) => {
       state.prefectures = action.payload;
-      //   console.log("current state", current(state));
     },
   },
 });
 
 export const selectPrefectures = (state: RootState): PrefectureState[] => {
-  // console.log("select", state.prefecture.prefectures);
   return state.prefecture.prefectures;
 };
 

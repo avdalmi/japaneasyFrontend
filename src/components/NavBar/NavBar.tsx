@@ -11,7 +11,6 @@ import logo from "../../images/logo.jpeg";
 const NavBar: React.FC = () => {
   const token = useSelector(selectToken);
 
-  // const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
   return (
     <Navbar expand="lg" variant="light" bg="light">
       <Container>

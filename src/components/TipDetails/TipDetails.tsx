@@ -1,4 +1,3 @@
-import React from "react";
 import { TipsState } from "../../store/tips/slice";
 import Loading from "../Loading/Loading";
 import * as loadingNoodles from "../Loading/39520-japanese-noodles.json";
@@ -8,7 +7,6 @@ interface TipDetailDisplayProps {
 }
 
 function TipDetails(props: TipDetailDisplayProps) {
-  // console.log("props", props.tipDetail);
   return (
     <div>
       {!props ? (

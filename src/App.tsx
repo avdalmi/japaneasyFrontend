@@ -5,14 +5,14 @@ import Homepage from "./pages/HomePage/Homepage";
 import { useEffect } from "react";
 import { useAppDispatch } from "./hooks";
 import { getUserWithStoredToken } from "./store/user/thunks";
-import Login from "../src/pages/Login";
-import SignUp from "../src/pages/SignUp";
+import Login from "./pages/LoginPage/Login";
+import SignUp from "./pages/SignUpPage/SignUp";
 import NavBar from "./components/NavBar/NavBar";
-import RecipeExpPage from "./pages/RecipeExpPage";
-import RecipeDetailsPage from "./pages/RecipeDetailsPage";
+import RecipeExpPage from "./pages/RecipeExpPage/RecipeExpPage";
+import RecipeDetailsPage from "./pages/RecipeDetailPage/RecipeDetailsPage";
 import MapPage from "./pages/MapPage/MapPage";
-import TipsPage from "./pages/TipsPage";
-import TipsDetailPage from "./pages/TipsDetailPage";
+import TipsPage from "./pages/TipsDetailPage/TipsPage";
+import TipsDetailPage from "./pages/TipsDetailPage/TipsDetailPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {

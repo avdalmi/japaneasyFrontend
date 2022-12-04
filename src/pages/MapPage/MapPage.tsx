@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Map from "../../components/Map/Map";
 import { useAppDispatch } from "../../hooks";
 import { getAllPrefectures } from "../../store/prefectures/thunks";
@@ -17,8 +17,10 @@ import {
   PopulationText,
   ReligionText,
 } from "./HistoryData";
+
 const MapPage = () => {
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(getAllPrefectures());
   }, [dispatch]);

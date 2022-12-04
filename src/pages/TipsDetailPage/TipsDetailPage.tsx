@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import TipDetails from "../components/TipDetails/TipDetails";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { selectTipById, TipsState } from "../store/tips/slice";
-import { getTipsById } from "../store/tips/thunks";
-import Loading from "../components/Loading/Loading";
-import loadingNoodles from "../components/Loading/39520-japanese-noodles.json";
+import TipDetails from "../../components/TipDetails/TipDetails";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { selectTipById, TipsState } from "../../store/tips/slice";
+import { getTipsById } from "../../store/tips/thunks";
+import Loading from "../../components/Loading/Loading";
+import loadingNoodles from "../../components/Loading/39520-japanese-noodles.json";
 
 function TipsDetailPage() {
   const { id } = useParams<string>();

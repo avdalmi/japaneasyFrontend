@@ -1,8 +1,8 @@
 import { useState, useEffect, SyntheticEvent } from "react";
 import Container from "@mui/material/Container";
-import { login } from "../store/user/thunks";
-import { selectToken } from "../store/user/slice";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { login } from "../../store/user/thunks";
+import { selectToken } from "../../store/user/slice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useNavigate, Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";

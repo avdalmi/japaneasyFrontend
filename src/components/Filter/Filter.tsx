@@ -1,29 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import RecipeCard from "../RecipeCard/RecipeCard";
-import { CategoryState, RecipeState } from "../../store/recipes/slice";
+import { CategoryState, RecipeState } from "../../types/Recipes";
 import "./Filter.css";
-import Loading from "../Loading/Loading";
-import * as loadingNoodles from "../Loading/39520-japanese-noodles.json";
 import "../RecipeCard/RecipeCard.css";
-interface FilterState {
-  id: number;
-  filtered: boolean;
-}
+import {
+  FilterState,
+  DifficultyFilterState,
+  DifficultyState,
+} from "../../types/Filter";
 
 interface FilterProps {
   recipes: RecipeState[];
   categories: CategoryState[];
   filterTitle: string;
-}
-
-interface DifficultyFilterState {
-  id: number;
-  level: string;
-  filtered: boolean;
-}
-interface DifficultyState {
-  id: number;
-  level: string;
 }
 
 const Filter = (props: FilterProps) => {
@@ -155,13 +144,25 @@ const Filter = (props: FilterProps) => {
   const renderSelectedDifficultyFilter = difficultyFilterSettings.some(
     (item) => item.filtered
   );
-  // console.log("renderselected", renderSelectedDifficultyFilter);
 
   const renderRecipeCards = () => {
     const recipe = recipes.map((rec) => {
-      // console.log("rec", rec);
       if (!renderSelectedCategoryFilter || !renderSelectedDifficultyFilter) {
-        return <RecipeCard recipe={rec} />;
+        return (
+          <RecipeCard
+            key={rec.id}
+            categoryId={rec.categoryId}
+            name={rec.name}
+            description={rec.description}
+            rating={rec.rating}
+            difficulty={rec.difficulty}
+            image={rec.image}
+            prefectureId={rec.prefectureId}
+            time={rec.time}
+            portions={rec.portions}
+            id={rec.id}
+          />
+        );
       }
       const filterState = categoryFilterSettings.find(({ id }) => {
         if (id === rec.categoryId) {
@@ -181,7 +182,21 @@ const Filter = (props: FilterProps) => {
       ) {
         return;
       }
-      return <RecipeCard recipe={rec} />;
+      return (
+        <RecipeCard
+          key={rec.id}
+          categoryId={rec.categoryId}
+          name={rec.name}
+          description={rec.description}
+          rating={rec.rating}
+          difficulty={rec.difficulty}
+          image={rec.image}
+          prefectureId={rec.prefectureId}
+          time={rec.time}
+          portions={rec.portions}
+          id={rec.id}
+        />
+      );
     });
     return recipe;
   };

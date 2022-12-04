@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { RecipeState } from "../../store/recipes/slice";
+import { RecipeState } from "../../types/Recipes";
 import { TipsState } from "../../store/tips/slice";
 import { OnChange } from "../../types/EventListener";
 
@@ -12,7 +12,6 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ recipes, ingredients }) => {
-  // console.log("data", data);
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [wordEntered, setWordEntered] = useState<string>("");
 
@@ -21,7 +20,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ recipes, ingredients }) => {
     setWordEntered(searchWord);
     if (recipes !== null) {
       const newFilter = recipes.filter((recipe: RecipeState) => {
-        //   console.log("name", recipe);
         return recipe.name.toLowerCase().includes(searchWord.toLowerCase());
       });
       if (searchWord === "") {
@@ -36,7 +34,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ recipes, ingredients }) => {
     setWordEntered(searchWord);
     if (ingredients !== null) {
       const newFilter = ingredients.filter((ingredient: TipsState) => {
-        //   console.log("name", recipe);
         return ingredient.name.toLowerCase().includes(searchWord.toLowerCase());
       });
       if (searchWord === "") {
@@ -45,11 +42,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ recipes, ingredients }) => {
         setFilteredData(newFilter);
       }
     }
-  };
-
-  const clearInput = () => {
-    setFilteredData([]);
-    setWordEntered("");
   };
 
   return (
