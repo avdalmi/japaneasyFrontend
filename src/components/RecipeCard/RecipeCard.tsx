@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
@@ -9,6 +9,7 @@ import { OnClick } from "../../types/EventListener";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { addNewSaved, toggleSavedRecipeThunk } from "../../store/user/thunks";
 import { selectFullProfile, selectToken } from "../../store/user/slice";
+import { getCategories } from "../../store/recipes/thunks";
 
 interface RecipeDisplayProps {
   id: number;
@@ -29,18 +30,18 @@ const RecipeCard = (props: RecipeDisplayProps) => {
   const dispatch = useAppDispatch();
   const token = useAppSelector(selectToken);
   const fullProfile = useAppSelector(selectFullProfile);
-  // console.log("full profile", fullProfile);
+  console.log("full profile", fullProfile);
   // console.log("props", props);
-  const [saved, setSaved] = useState(props.isSaved);
-  // console.log("saved", saved);
-  const [recipeId, setRecipeId] = useState(0);
+  // const [saved, setSaved] = useState(props.isSaved);
+  // // console.log("saved", saved);
+  // const [recipeId, setRecipeId] = useState(0);
 
-  const toggleSavedRecipes = (e: OnClick, id: number) => {
-    e.preventDefault();
-    // console.log("id", recipeId);
-    setSaved(!saved);
-    setRecipeId(id);
-  };
+  // const toggleSavedRecipes = (e: OnClick, id: number) => {
+  //   e.preventDefault();
+  //   // console.log("id", recipeId);
+  //   setSaved(!saved);
+  //   setRecipeId(id);
+  // };
 
   //@ts-ignore
   const names = fullProfile?.user.recipes
@@ -113,19 +114,7 @@ const RecipeCard = (props: RecipeDisplayProps) => {
                   Go to recipe
                 </GoButton>
               </Link>
-              {/* {token && saved ? (
-                <GoButton
-                  onClick={toggleSavedRecipes}
-                  className="recipeCardButton"
-                  width={400}
-                >
-                  unsave
-                </GoButton>
-              ) : (
-                <GoButton className="recipeCardButton" width={400}>
-                  save
-                </GoButton>
-              )} */}
+
               <div>{checkIfUserLoggedIn()}</div>
             </div>
           </Card.Body>

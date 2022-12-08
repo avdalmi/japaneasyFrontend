@@ -16,8 +16,6 @@ function ProfilePage() {
   const dispatch = useAppDispatch();
 
   const fullProfile = useAppSelector(selectFullProfile);
-  //@ts-ignore
-  // console.log("full profile", fullProfile?.user.recipes);
   const token = useAppSelector(selectToken);
 
   useEffect(() => {
@@ -27,7 +25,6 @@ function ProfilePage() {
   }, []);
 
   useEffect(() => {
-    // dispatch(getUserWithRecipe());
     dispatch(getUserWithStoredToken());
   }, [dispatch]);
 
@@ -38,7 +35,6 @@ function ProfilePage() {
 
     const returnProfilesRecipes = fullProfile.user?.recipes?.map(
       (recipe: RecipeState) => {
-        // return console.log("return profile", recipe.SavedUsers);
         if (recipe.SavedUsers?.isSaved === true) {
           return (
             <RecipeCard
@@ -95,7 +91,7 @@ function ProfilePage() {
 
   return (
     <div>
-      <h1>Hello !</h1>
+      <h1>Hello!</h1>
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
         <Row>
           <Col sm={3}>
@@ -108,6 +104,9 @@ function ProfilePage() {
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="third">My favorite recipes</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="fourth">Add new recipe</Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>

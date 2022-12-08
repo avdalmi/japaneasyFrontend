@@ -13,6 +13,7 @@ import {
   tokenStillValid,
   userWithRecipes,
 } from "./slice";
+import { getCategories } from "../recipes/thunks";
 
 export const signUp =
   (firstName: string, lastName: string, email: string, password: string) =>

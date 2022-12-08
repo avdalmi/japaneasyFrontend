@@ -3,10 +3,7 @@ import { signUp } from "../../store/user/thunks";
 import { selectToken } from "../../store/user/slice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useNavigate, Link } from "react-router-dom";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
+import Button from "react-bootstrap/Button";
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -32,7 +29,7 @@ export default function SignUp() {
 
   return (
     <div>
-      <Container
+      <div
         style={{
           display: "flex",
           flexDirection: "column",
@@ -42,52 +39,44 @@ export default function SignUp() {
         }}
       >
         <h1>Sign Up</h1>
-        <Box
-          component="form"
+        <form
+          onSubmit={submitForm}
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             minWidth: "400px",
           }}
-          sx={{
-            "& > :not(style)": { m: 1 },
-          }}
-          noValidate
-          autoComplete="off"
         >
-          <TextField
+          <label>You first name:</label>
+          <input
             style={{ width: "100%" }}
             name="firstName"
             id="outlined-basic"
-            label="First name"
-            variant="outlined"
             value={firstName}
             onChange={(event) => setFirstName(event.target.value)}
           />
-          <TextField
+          <label>Your last name:</label>
+          <input
             style={{ width: "100%" }}
             name="lastName"
             id="outlined-basic"
-            label="Last name"
-            variant="outlined"
             value={lastName}
             onChange={(event) => setLastName(event.target.value)}
           />
-          <TextField
+          <label>E-mail:</label>
+          <input
             style={{ width: "100%" }}
             name="email"
             id="outlined-basic"
-            label="Email"
-            variant="outlined"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
-          <TextField
+          <label>Your password:</label>
+          <input
             style={{ width: "100%" }}
             name="password"
             id="outlined-multiline"
-            label="Password"
             type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
@@ -97,15 +86,14 @@ export default function SignUp() {
             style={{ backgroundColor: "#343A40" }}
             variant="contained"
             type="submit"
-            onClick={submitForm}
           >
             Sign up
           </Button>
           <Link style={{ color: "#343A40" }} to="/login">
             Click here to log in
           </Link>
-        </Box>
-      </Container>
+        </form>
+      </div>
     </div>
   );
 }
