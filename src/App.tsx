@@ -11,7 +11,7 @@ import NavBar from "./components/NavBar/NavBar";
 import RecipeExpPage from "./pages/RecipeExpPage/RecipeExpPage";
 import RecipeDetailsPage from "./pages/RecipeDetailPage/RecipeDetailsPage";
 import MapPage from "./pages/MapPage/MapPage";
-import TipsPage from "./pages/TipsDetailPage/TipsPage";
+import TipsPage from "./pages/TipsPage/TipsPage";
 import TipsDetailPage from "./pages/TipsDetailPage/TipsDetailPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 

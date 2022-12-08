@@ -1,12 +1,9 @@
 import { useState, useEffect, SyntheticEvent } from "react";
-import Container from "@mui/material/Container";
 import { login } from "../../store/user/thunks";
 import { selectToken } from "../../store/user/slice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useNavigate, Link } from "react-router-dom";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import Button from "react-bootstrap/Button";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -29,7 +26,8 @@ export default function SignUp() {
   };
 
   return (
-    <Container
+    <div
+      onSubmit={submitForm}
       style={{
         display: "flex",
         flexDirection: "column",
@@ -39,50 +37,42 @@ export default function SignUp() {
       }}
     >
       <h1>Login</h1>
-      <Box
-        component="form"
+      <form
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           minWidth: "400px",
         }}
-        sx={{
-          "& > :not(style)": { m: 1 },
-        }}
-        noValidate
-        autoComplete="off"
       >
-        <TextField
+        <label>Enter your email address</label>
+        <input
           style={{ width: "100%" }}
           name="email"
           id="outlined-basic"
-          label="Email"
-          variant="outlined"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />
-        <TextField
+        <label>Enter your password</label>
+        <input
           style={{ width: "100%" }}
           name="password"
           id="outlined-multiline"
-          label="Password"
           type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
         <Button
           style={{ backgroundColor: "#343A40" }}
-          variant="contained"
+          variant="secondary"
           type="submit"
-          onClick={submitForm}
         >
           Login
         </Button>
         <Link style={{ color: "#343A40" }} to="/signup">
           Click here to sign up
         </Link>
-      </Box>
-    </Container>
+      </form>
+    </div>
   );
 }
