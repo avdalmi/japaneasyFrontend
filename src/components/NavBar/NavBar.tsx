@@ -12,7 +12,7 @@ const NavBar: React.FC = () => {
   const token = useSelector(selectToken);
 
   return (
-    <Navbar expand="lg" variant="light" bg="light">
+    <Navbar expand="lg" style={{ backgroundColor: "#f4f5f3" }}>
       <Container>
         <Navbar.Brand as={NavLink} to="/">
           <img src={logo} alt="brand logo" />
@@ -33,6 +33,9 @@ const NavBar: React.FC = () => {
             </Nav.Link>
             <Nav.Link as={NavLink} to="/tips">
               Tips & Tricks
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/bento">
+              Bento Boxes
             </Nav.Link>
             {token && (
               <Nav.Link as={NavLink} to="/profile">

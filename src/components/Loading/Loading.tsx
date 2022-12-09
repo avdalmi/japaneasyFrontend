@@ -18,7 +18,7 @@ const Loading = (Props: LottiePlayerProps) => {
   };
   return (
     <div>
-      <Lottie options={defaultOptions} style={style} />
+      <Lottie options={defaultOptions} style={{ width: "800px" }} />
     </div>
   );
 };

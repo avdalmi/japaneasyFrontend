@@ -42,7 +42,7 @@ export const selectRecipe = (state: RootState): RecipeState[] =>
 export const selectFullRecipe = (state: RootState) => state.recipe.fullRecipes;
 
 export const selectCategories = (state: RootState): CategoryState[] => {
-  console.log(state.recipe.categories);
+  // console.log(state.recipe.categories);
   return state.recipe.categories;
 };
 

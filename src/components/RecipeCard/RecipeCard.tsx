@@ -7,7 +7,7 @@ import "./RecipeCard.css";
 import { GoButton } from "../../styles/Buttons";
 import { OnClick } from "../../types/EventListener";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { addNewSaved, toggleSavedRecipeThunk } from "../../store/user/thunks";
+import { toggleSavedRecipeThunk } from "../../store/user/thunks";
 import { selectFullProfile, selectToken } from "../../store/user/slice";
 import { getCategories } from "../../store/recipes/thunks";
 
@@ -30,7 +30,7 @@ const RecipeCard = (props: RecipeDisplayProps) => {
   const dispatch = useAppDispatch();
   const token = useAppSelector(selectToken);
   const fullProfile = useAppSelector(selectFullProfile);
-  console.log("full profile", fullProfile);
+  // console.log("full profile", fullProfile)s;
   // console.log("props", props);
   // const [saved, setSaved] = useState(props.isSaved);
   // // console.log("saved", saved);
@@ -53,7 +53,6 @@ const RecipeCard = (props: RecipeDisplayProps) => {
   // console.log("names", names);
   const checkIfUserLoggedIn = () => {
     if (!token) return;
-
     if (token && names?.includes(props.name)) {
       return (
         <GoButton
@@ -70,7 +69,7 @@ const RecipeCard = (props: RecipeDisplayProps) => {
       return (
         <GoButton
           onClick={() => {
-            dispatch(addNewSaved(false, props.id as number));
+            dispatch(toggleSavedRecipeThunk(false, props.id as number));
           }}
           className="recipeCardButton"
           width={400}

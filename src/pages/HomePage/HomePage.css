@@ -27,6 +27,15 @@
   background-size: cover;
   background-image: url("https://www.justonecookbook.com/wp-content/uploads/2020/04/Kabocha-Miso-Soup-0265-I.jpg");
 }
+
+.item4 {
+  background-size: cover;
+  background-image: url("https://www.justonecookbook.com/wp-content/uploads/2019/02/Meal-Prep-Bento-I-2.jpg");
+}
+.item5 {
+  background-size: cover;
+  background-image: url("https://www.travelandleisure.com/thmb/_3nQ1ivxrnTKVphdp9ZYvukADKQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/amsterdam-nl-AMSTERDAMTG0521-6d2bfaac29704667a950bcf219680640.jpg");
+}
 .homePageNavItemContainer {
   background-color: pink;
   margin: 10px;

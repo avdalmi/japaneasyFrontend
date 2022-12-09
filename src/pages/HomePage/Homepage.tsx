@@ -25,6 +25,11 @@ function Homepage() {
       content:
         "Discover what Japanese ingredients are and what to replace them with if you dont have them at home or at the grocery store",
     },
+    {
+      target: ".item4 h3",
+      content:
+        "A complete guide on how to create your own bento boxes from scratch",
+    },
   ];
 
   const startTour = (e: OnClick) => {
@@ -69,10 +74,16 @@ function Homepage() {
             </Link>
           </div>
 
-          {/* <div>
-          <h3>Ingredient Explorer</h3>
-          <img />
-        </div> */}
+          <div className="homePageNavItemContainer item4">
+            <Link to="/bento">
+              <h3>Bento Boxes</h3>
+            </Link>
+          </div>
+          <div className="homePageNavItemContainer item5">
+            <Link to="/wheretoeat">
+              <h3>Where to eat in Amsterdam</h3>
+            </Link>
+          </div>
 
           {/* <div>
           <h3>Where to eat in Amsterdam</h3>

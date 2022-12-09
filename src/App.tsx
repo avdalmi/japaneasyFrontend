@@ -14,6 +14,8 @@ import MapPage from "./pages/MapPage/MapPage";
 import TipsPage from "./pages/TipsPage/TipsPage";
 import TipsDetailPage from "./pages/TipsDetailPage/TipsDetailPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import BentoPage from "./pages/bentoPage/BentoPage";
+import WhereToEatPage from "./pages/WhereToEatPage.tsx/WhereToEatPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -35,6 +37,8 @@ function App() {
         <Route path="/tips" element={<TipsPage />} />
         <Route path="/tips/:id" element={<TipsDetailPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/bento" element={<BentoPage />} />
+        <Route path="/wheretoeat" element={<WhereToEatPage />} />
       </Routes>
     </div>
   );

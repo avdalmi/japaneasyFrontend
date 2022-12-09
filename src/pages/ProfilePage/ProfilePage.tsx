@@ -52,6 +52,8 @@ function ProfilePage() {
               portions={recipe.portions}
             />
           );
+        } else {
+          return <></>;
         }
       }
     );

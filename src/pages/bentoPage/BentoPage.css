@@ -1,0 +1,40 @@
+.bentoImage {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.chapterContainer {
+  margin: 30px;
+  border: 2px solid grey;
+  padding: 50px;
+  border-radius: 15px;
+}
+
+.bentoBoxContainer {
+  display: flex;
+  text-align: left;
+  margin: 30px;
+}
+
+.Bentoh3 {
+  text-align: left;
+  margin: 30px;
+}
+h1 {
+  border: 2px solid grey;
+  border-radius: 15px;
+}
+
+p {
+  margin-left: 30px;
+}
+.colorContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.colorItem {
+  margin: 10px;
+}
