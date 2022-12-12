@@ -11,8 +11,7 @@ function TipsDetailPage() {
   const { id } = useParams<string>();
   const newId = Number(id);
   const tip = useAppSelector(selectTipById);
-  //   console.log("tip selector", tip);
-  // console.log("id", id)
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {

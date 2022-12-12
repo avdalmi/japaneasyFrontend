@@ -10,7 +10,7 @@ import Accordion from "react-bootstrap/Accordion";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { RecipeState } from "../../types/Recipes";
-import { PrefectureImage } from "../../types/Prefectures";
+import { PrefectureImage, PrefectureState } from "../../types/Prefectures";
 import { Coordinates, MapCenter } from "../../types/Maps";
 import Rating from "../Rating/Rating";
 
@@ -42,11 +42,10 @@ const Map: React.FC = () => {
           url="https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=v4T1pdLNYtqXIQR4IOYC"
           attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         />
-        {japanData.features.map((pref) => {
-          const coordinates = pref.geometry.coordinates[0].map((item) => [
-            item[1],
-            item[0],
-          ]);
+        {japanData.features.map((pref: any) => {
+          const coordinates = pref.geometry.coordinates[0].map(
+            (item: number[]) => [item[1], item[0]]
+          );
 
           return (
             <Polygon

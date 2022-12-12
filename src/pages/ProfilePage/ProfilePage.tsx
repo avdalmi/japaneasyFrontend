@@ -67,7 +67,6 @@ function ProfilePage() {
 
     const returnProfilesRecipes = fullProfile.user?.recipes?.map(
       (recipe: RecipeState) => {
-        // return console.log("return profile", recipe.SavedUsers);
         if (recipe.SavedUsers?.isFavorite === true) {
           return (
             <RecipeCard

@@ -13,7 +13,6 @@ import {
   tokenStillValid,
   userWithRecipes,
 } from "./slice";
-import { getCategories } from "../recipes/thunks";
 
 export const signUp =
   (firstName: string, lastName: string, email: string, password: string) =>
@@ -94,14 +93,13 @@ export const getUserWithStoredToken = () => {
 export const toggleSavedRecipeThunk = (saved: boolean, recipeId: number) => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
     const userId = getState().user.fullProfile?.id;
-    // console.log(userId);
+
     try {
       const response = await axios.put(`${apiUrl}/togglesaved`, {
         saved,
         recipeId,
         userId,
       });
-      // console.log("response", response);
       dispatch(getUserWithStoredToken());
     } catch (e) {
       if (e instanceof Error) {
@@ -112,47 +110,3 @@ export const toggleSavedRecipeThunk = (saved: boolean, recipeId: number) => {
     }
   };
 };
-
-// export const toggleSavedRecipeThunk = (saved: boolean, recipeId: number) => {
-//   return async (dispatch: AppDispatch, getState: () => RootState) => {
-//     const userId = getState().user.fullProfile?.id;
-
-//     try {
-//       const response = await axios.patch(`${apiUrl}/update`, {
-//         saved,
-//         recipeId,
-//         userId,
-//       });
-
-//       dispatch(getUserWithStoredToken());
-//     } catch (e) {
-//       if (e instanceof Error) {
-//         console.log(e.message);
-//       } else {
-//         console.log(e);
-//       }
-//     }
-//   };
-// };
-
-// export const addNewSaved = (saved: boolean, recipeId: number) => {
-//   return async (dispatch: AppDispatch, getState: () => RootState) => {
-//     const userId = getState().user.fullProfile?.id;
-//     console.log("id is", userId, recipeId);
-//     try {
-//       const response = await axios.post(`${apiUrl}/addsaved`, {
-//         recipeId,
-//         userId,
-//         saved,
-//       });
-
-//       dispatch(getUserWithStoredToken());
-//     } catch (e) {
-//       if (e instanceof Error) {
-//         console.log(e.message);
-//       } else {
-//         console.log(e);
-//       }
-//     }
-//   };
-// };

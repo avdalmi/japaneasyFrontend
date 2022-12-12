@@ -30,9 +30,6 @@ const CarouselComp: React.FC = () => {
           alt="tokyo streets"
           style={{ maxHeight: "340px", objectFit: "cover" }}
         />
-        {/* <Carousel.Caption>
-          <Button>Take a tour of the website</Button>
-        </Carousel.Caption> */}
       </Carousel.Item>
     </Carousel>
   );

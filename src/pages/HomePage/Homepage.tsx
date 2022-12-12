@@ -30,6 +30,11 @@ function Homepage() {
       content:
         "A complete guide on how to create your own bento boxes from scratch",
     },
+    {
+      target: ".item5 h3",
+      content:
+        "An interactive map that shows which Japanese restaurants to go to in Amsterdam according to Akiko",
+    },
   ];
 
   const startTour = (e: OnClick) => {
@@ -84,11 +89,6 @@ function Homepage() {
               <h3>Where to eat in Amsterdam</h3>
             </Link>
           </div>
-
-          {/* <div>
-          <h3>Where to eat in Amsterdam</h3>
-          <img />
-        </div> */}
         </div>
       </div>
     </div>

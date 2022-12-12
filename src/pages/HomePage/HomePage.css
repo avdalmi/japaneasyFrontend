@@ -5,7 +5,6 @@
 }
 
 .homePageNavItemContainer {
-  background-color: pink;
   width: 300px;
   height: 300px;
   display: flex;
@@ -37,7 +36,6 @@
   background-image: url("https://www.travelandleisure.com/thmb/_3nQ1ivxrnTKVphdp9ZYvukADKQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/amsterdam-nl-AMSTERDAMTG0521-6d2bfaac29704667a950bcf219680640.jpg");
 }
 .homePageNavItemContainer {
-  background-color: pink;
   margin: 10px;
   width: 300px;
   height: 300px;
@@ -51,7 +49,7 @@
   font-size: 30px;
   color: black;
   width: 296px;
-  height: 3rem;
+  height: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;

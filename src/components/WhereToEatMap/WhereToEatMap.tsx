@@ -118,14 +118,6 @@ function WhereToEatMap() {
             </a>
           </Popup>
         </Marker>
-        {/* <Marker position={[52.37802, 4.88895]}>
-          <Popup>
-            <strong>Nobu</strong>
-            <br />
-            <br />
-            <a href=""></a>
-          </Popup>
-        </Marker> */}
       </MapContainer>
     </div>
   );

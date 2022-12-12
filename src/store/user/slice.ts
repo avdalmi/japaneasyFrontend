@@ -40,11 +40,9 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     loginSuccess: (state, action) => {
-      // console.log("action", action.payload);
       localStorage.setItem("token", action.payload.token);
       state.token = action.payload.token;
       state.profile = action.payload.user;
-      // console.log("current state", current(state));
     },
     logOutSuccess: (state) => {
       localStorage.removeItem("token");
@@ -55,11 +53,9 @@ export const userSlice = createSlice({
       state.profile = action.payload.user;
     },
     userWithRecipes: (state, action) => {
-      // console.log("action", action.payload);
       state.fullProfile = action.payload;
     },
     updateSaved: (state, action: PayloadAction<FullProfileState>) => {
-      console.log("action", action.payload);
       //@ts-ignore
       state.fullProfile.recipe = [...state.fullProfile?.recipe, action.payload];
     },
@@ -69,15 +65,9 @@ export const userSlice = createSlice({
 //selectors
 export const selectToken = (state: RootState) => state.user.token;
 
-export const selectUser = (state: RootState) => {
-  // console.log("state rootstate", state);
-  return state.user.profile;
-};
+export const selectUser = (state: RootState) => state.user.profile;
 
-export const selectFullProfile = (state: RootState) => {
-  // console.log("staterootstate", state.user);
-  return state.user.fullProfile;
-};
+export const selectFullProfile = (state: RootState) => state.user.fullProfile;
 
 export const {
   loginSuccess,
@@ -86,4 +76,5 @@ export const {
   userWithRecipes,
   updateSaved,
 } = userSlice.actions;
+
 export default userSlice.reducer;
