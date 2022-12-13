@@ -1,3 +1,19 @@
+# Japaneasy
+
+During the lockdown period I started a small bento box business. During this time I noticed that not many people know what homecooked Japanese food is outside of sushi, gyozas and karaage. I wanted to help my friends know a little bit more about how special Japan and Japanese food is, so I created this website.
+
+| front-end          | back-end               |
+| ------------------ | ---------------------- |
+| React              | Express                |
+| Redux              | Sequelize/Sequlize-cli |
+| TypeScript         | PostgreSQL             |
+| React Lottie       | ElephantSQL            |
+| React Leaflet      | Bcrypt                 |
+| React joyride      | JSON web token         |
+| React Bootstrap    |                        |
+| Axios              |                        |
+| React Star Ratings |                        |
+
 # Wireframes:
 
 ![wireframes for website](./src/images/wireframes.png)
