@@ -14,6 +14,10 @@ During the lockdown period I started a small bento box business. During this tim
 | Axios              |                        |
 | React Star Ratings |                        |
 
+# Video walk through
+
+![[https://www.youtube.com/embed/edb6W06X9AM]]
+
 # Wireframes:
 
 ![wireframes for website](./src/images/wireframes.png)
