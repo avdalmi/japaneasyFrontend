@@ -16,7 +16,7 @@ During the lockdown period I started a small bento box business. During this tim
 
 # Video walk through
 
-![[https://www.youtube.com/embed/edb6W06X9AM]]
+[![Japaneasy video walk through](https://www.youtube.com/watch?v=edb6W06X9AM.jpg)](https://www.youtube.com/watch?v=edb6W06X9AM)
 
 # Wireframes:
 
