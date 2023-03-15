@@ -33,6 +33,9 @@ function App() {
       .then((data) => data.json())
       .then((json) => alert(JSON.stringify(json)));
   }
+  useEffect(() => {
+    callApi();
+  }, []);
   return (
     <div className="App">
       <NavBar />
