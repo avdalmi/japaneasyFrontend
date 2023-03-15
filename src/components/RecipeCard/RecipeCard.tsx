@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
-import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
-import Container from "react-bootstrap/Container";
+
 import Rating from "../Rating/Rating";
-import "./RecipeCard.css";
-import { GoButton } from "../../styles/Buttons";
-import { OnClick } from "../../types/EventListener";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { toggleSavedRecipeThunk } from "../../store/user/thunks";
 import { selectFullProfile, selectToken } from "../../store/user/slice";
-import { getCategories } from "../../store/recipes/thunks";
+
+import "./RecipeCard.css";
+import { GoButton } from "../../styles/Buttons";
+import { Card, Container } from "react-bootstrap";
 
 interface RecipeDisplayProps {
   id: number;
@@ -30,18 +28,6 @@ const RecipeCard = (props: RecipeDisplayProps) => {
   const dispatch = useAppDispatch();
   const token = useAppSelector(selectToken);
   const fullProfile = useAppSelector(selectFullProfile);
-  // console.log("full profile", fullProfile)s;
-  // console.log("props", props);
-  // const [saved, setSaved] = useState(props.isSaved);
-  // // console.log("saved", saved);
-  // const [recipeId, setRecipeId] = useState(0);
-
-  // const toggleSavedRecipes = (e: OnClick, id: number) => {
-  //   e.preventDefault();
-  //   // console.log("id", recipeId);
-  //   setSaved(!saved);
-  //   setRecipeId(id);
-  // };
 
   //@ts-ignore
   const names = fullProfile?.user.recipes
@@ -50,7 +36,6 @@ const RecipeCard = (props: RecipeDisplayProps) => {
       return recipe.name;
     });
 
-  // console.log("names", names);
   const checkIfUserLoggedIn = () => {
     if (!token) return;
     if (token && names?.includes(props.name)) {

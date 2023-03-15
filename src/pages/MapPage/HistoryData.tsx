@@ -1,4 +1,3 @@
-import React from "react";
 import { HistoryImage } from "../../styles/Image";
 import { Paragraph } from "../../styles/Text";
 

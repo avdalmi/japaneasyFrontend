@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
-import RecipeCard from "../RecipeCard/RecipeCard";
-import { CategoryState, RecipeState } from "../../types/Recipes";
 import "./Filter.css";
 import "../RecipeCard/RecipeCard.css";
+
+import { useEffect, useState } from "react";
+
+import { RecipeCard } from "../index";
+
 import {
+  CategoryState,
+  RecipeState,
   FilterState,
   DifficultyFilterState,
   DifficultyState,
-} from "../../types/Filter";
+} from "../../types";
 
 interface FilterProps {
   recipes: RecipeState[];

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export type OnChangeInput = React.ChangeEvent<HTMLInputElement>;
 export type OnChangeInputArea = React.ChangeEvent<HTMLTextAreaElement>;

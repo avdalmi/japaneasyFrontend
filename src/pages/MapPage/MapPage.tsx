@@ -1,13 +1,8 @@
 import { useEffect } from "react";
-import Map from "../../components/Map/Map";
+import { Map } from "../../components";
 import { useAppDispatch } from "../../hooks";
 import { getAllPrefectures } from "../../store/prefectures/thunks";
-import Col from "react-bootstrap/Col";
-import Nav from "react-bootstrap/Nav";
-import Row from "react-bootstrap/Row";
-import Tab from "react-bootstrap/Tab";
-import "./MapPage.css";
-import { MainTitle } from "../../styles/Text";
+
 import {
   GovernmentText,
   ClimateText,
@@ -17,6 +12,10 @@ import {
   PopulationText,
   ReligionText,
 } from "./HistoryData";
+
+import "./MapPage.css";
+import { Col, Nav, Row, Tab } from "react-bootstrap";
+import { MainTitle } from "../../styles/Text";
 
 const MapPage = () => {
   const dispatch = useAppDispatch();

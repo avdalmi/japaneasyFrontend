@@ -1,8 +1,9 @@
 import { TipsState } from "../../store/tips/slice";
-import Loading from "../Loading/Loading";
-import * as loadingNoodles from "../Loading/39520-japanese-noodles.json";
-import "./TipDetails.css";
+import { Loading } from "../index";
 import { MainTitle } from "../../styles/Titles";
+import * as loadingNoodles from "../Loading/39520-japanese-noodles.json";
+
+import "./TipDetails.css";
 
 interface TipDetailDisplayProps {
   tipDetail: TipsState;

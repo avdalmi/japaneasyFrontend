@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { RecipeState } from "../../types/Recipes";
+
+import { RecipeState, OnChange } from "../../types";
 import { TipsState } from "../../store/tips/slice";
-import { OnChange } from "../../types/EventListener";
 
 import "./SearchBar.css";
 

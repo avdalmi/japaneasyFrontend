@@ -1,11 +1,13 @@
 import { useState, useEffect, SyntheticEvent } from "react";
+import { useNavigate, Link } from "react-router-dom";
+
 import { login } from "../../store/user/thunks";
 import { selectToken } from "../../store/user/slice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { useNavigate, Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 
-export default function SignUp() {
+import { Button } from "react-bootstrap";
+
+export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

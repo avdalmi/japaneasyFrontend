@@ -7,7 +7,6 @@ export const getAllTips =
   () => async (dispatch: AppDispatch, getState: () => RootState) => {
     try {
       const response = await axios.get(`${apiUrl}/tips`);
-
       dispatch(fetchAllTips(response.data.tips));
     } catch (e) {
       if (e instanceof Error) console.log("error message", e.message);
@@ -18,7 +17,6 @@ export const getTipsById =
   (id: number) => async (dispatch: AppDispatch, getState: () => RootState) => {
     try {
       const response = await axios.get(`${apiUrl}/tips/${id}`);
-
       dispatch(fetchTipsById(response.data.tipById));
     } catch (e) {
       if (e instanceof Error) console.log("error message", e.message);

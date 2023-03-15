@@ -1,5 +1,6 @@
-import Nav from "react-bootstrap/Nav";
 import { NavLink } from "react-router-dom";
+
+import Nav from "react-bootstrap/Nav";
 
 const LoggedOut: React.FC = () => {
   return (

@@ -1,12 +1,11 @@
 import { NavLink } from "react-router-dom";
-import Logout from "../Logout/Logout";
-import Login from "../Login/Login";
 import { useSelector } from "react-redux";
+
+import { LoggedIn, LoggedOut } from "../index";
 import { selectToken } from "../../store/user/slice";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+
 import logo from "../../images/logo.jpeg";
+import { Container, Nav, Navbar } from "react-bootstrap";
 
 const NavBar: React.FC = () => {
   const token = useSelector(selectToken);
@@ -43,7 +42,7 @@ const NavBar: React.FC = () => {
               </Nav.Link>
             )}
 
-            {token ? <Logout /> : <Login />}
+            {token ? <LoggedIn /> : <LoggedOut />}
           </Nav>
         </Navbar.Collapse>
       </Container>

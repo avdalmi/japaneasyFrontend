@@ -1,7 +1,9 @@
-import { RootState } from '..';
+import { RootState } from "..";
 
 export const selectAppLoading = (reduxState: RootState) =>
-    reduxState.appState.loading;
+  reduxState.appState.loading;
+
 export const selectSaveLoading = (reduxState: RootState) =>
-    reduxState.appState.saveLoading;
+  reduxState.appState.saveLoading;
+
 export const selectAlert = (reduxState: RootState) => reduxState.appState.alert;

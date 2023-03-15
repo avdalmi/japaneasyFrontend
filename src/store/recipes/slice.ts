@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "..";
 import {
@@ -42,7 +42,6 @@ export const selectRecipe = (state: RootState): RecipeState[] =>
 export const selectFullRecipe = (state: RootState) => state.recipe.fullRecipes;
 
 export const selectCategories = (state: RootState): CategoryState[] => {
-  // console.log(state.recipe.categories);
   return state.recipe.categories;
 };
 

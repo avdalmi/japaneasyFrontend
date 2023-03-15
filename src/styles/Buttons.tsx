@@ -10,9 +10,11 @@ export const GoButton = styled.button<ReadMoreButton>`
   border-radius: 5px;
   border: 1px solid black;
   background-color: grey;
+
   ${mediaQueries("md")`
     background-color: yellow;
     color: white;
   `};
+
   ${(props) => mediaQueries("md")(`width: ${props.width}px`)}
 `;

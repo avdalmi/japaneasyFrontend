@@ -1,10 +1,12 @@
-import CarouselComp from "../../components/Carousel/Carousel";
+import JoyRide from "react-joyride";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+
+import { OnClick } from "../../types";
+import { CarouselComp } from "../../components";
+
+import { Button } from "react-bootstrap";
 import "./HomePage.css";
-import { OnClick } from "../../types/EventListener";
-import JoyRide from "react-joyride";
-import Button from "react-bootstrap/Button";
 
 function Homepage() {
   const [run, setRun] = useState(false);

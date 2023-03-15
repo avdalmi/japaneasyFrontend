@@ -1,5 +1,5 @@
 import React from "react";
-import WhereToEatMap from "../../components/WhereToEatMap/WhereToEatMap";
+import { WhereToEatMap } from "../../components";
 import { MainTitle } from "../../styles/Text";
 
 function WhereToEatPage() {

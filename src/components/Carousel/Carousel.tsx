@@ -1,6 +1,5 @@
 import React from "react";
-import Carousel from "react-bootstrap/Carousel";
-import Button from "react-bootstrap/Button";
+import { Carousel } from "react-bootstrap";
 
 const CarouselComp: React.FC = () => {
   return (

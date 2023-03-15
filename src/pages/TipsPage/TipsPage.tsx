@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { selectAllTips } from "../../store/tips/slice";
 import { getAllTips } from "../../store/tips/thunks";
 import { TipsState } from "../../store/tips/slice";
-import TipsCard from "../../components/TipsCard/TipsCard";
-import SearchBar from "../../components/SearchBar/SearchBar";
-import Loading from "../../components/Loading/Loading";
+import { TipsCard, SearchBar, Loading } from "../../components";
 import loadingNoodles from "../../components/Loading/39520-japanese-noodles.json";
+
 import { MainTitle } from "../../styles/Text";
 
 function TipsPage() {

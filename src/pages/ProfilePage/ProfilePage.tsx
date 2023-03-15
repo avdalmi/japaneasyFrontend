@@ -1,15 +1,14 @@
 import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks";
-import { selectFullProfile, selectToken } from "../../store/user/slice";
 import { useNavigate } from "react-router-dom";
+
+import { selectFullProfile, selectToken } from "../../store/user/slice";
 import { getUserWithStoredToken } from "../../store/user/thunks";
-import Nav from "react-bootstrap/Nav";
-import Row from "react-bootstrap/Row";
-import Tab from "react-bootstrap/Tab";
-import Col from "react-bootstrap/Col";
-import RecipeCard from "../../components/RecipeCard/RecipeCard";
+import { RecipeCard } from "../../components";
+import { RecipeState } from "../../types";
+
+import { Col, Nav, Row, Tab } from "react-bootstrap";
 import "./ProfilePage.css";
-import { RecipeState } from "../../types/Recipes";
 
 function ProfilePage() {
   const navigate = useNavigate();

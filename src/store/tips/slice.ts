@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "..";
 
@@ -25,11 +25,9 @@ export const tipsSlice = createSlice({
   reducers: {
     fetchAllTips: (state, action: PayloadAction<TipsState[]>) => {
       state.tips = action.payload;
-      //   console.log("current State", current(state));
     },
     fetchTipsById: (state, action: PayloadAction<TipsState[]>) => {
       state.tipById = action.payload;
-      //   console.log("current state", current(state));
     },
   },
 });

@@ -7,7 +7,7 @@ interface LottiePlayerProps {
 }
 
 const Loading = (Props: LottiePlayerProps) => {
-  const { animationData, style } = Props;
+  const { animationData } = Props;
   const defaultOptions = {
     loop: true,
     autoplay: true,

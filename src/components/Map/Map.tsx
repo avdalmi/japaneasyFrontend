@@ -1,18 +1,21 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { MapContainer, TileLayer, Polygon } from "react-leaflet";
+import Rating from "../Rating/Rating";
+
 import { useAppSelector } from "../../hooks";
 import { selectPrefectures } from "../../store/prefectures/slice";
+
 import { japanData } from "./Data";
-import Carousel from "react-bootstrap/Carousel";
-import Modal from "react-bootstrap/Modal";
-import Image from "react-bootstrap/Image";
-import Accordion from "react-bootstrap/Accordion";
-import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import { RecipeState } from "../../types/Recipes";
-import { PrefectureImage, PrefectureState } from "../../types/Prefectures";
-import { Coordinates, MapCenter } from "../../types/Maps";
-import Rating from "../Rating/Rating";
+
+import {
+  RecipeState,
+  PrefectureImage,
+  Coordinates,
+  MapCenter,
+} from "../../types/";
+
+import { Carousel, Modal, Image, Accordion, Button } from "react-bootstrap";
 
 const Map: React.FC = () => {
   const center = [37.7608, 140.4748];

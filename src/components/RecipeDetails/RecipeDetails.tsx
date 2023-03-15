@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
+
 import {
   CompleteRecipeState,
   IngredientState,
   InstructionsState,
-} from "../../types/Recipes";
-import Loading from "../Loading/Loading";
-import "./RecipeDetails.css";
-import Rating from "../Rating/Rating";
+} from "../../types";
+import { Rating, Loading } from "../index";
 import { useAppDispatch } from "../../hooks";
 import { getAllTips } from "../../store/tips/thunks";
 import * as loadingNoodles from "../Loading/39520-japanese-noodles.json";
+
+import "./RecipeDetails.css";
 
 interface Props {
   recipe: CompleteRecipeState;

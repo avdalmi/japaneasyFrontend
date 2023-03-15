@@ -4,7 +4,7 @@
   margin: 15px;
   border: 3px solid grey;
   min-height: 10rem;
-  max-height: 12rem;
+  overflow: "scroll";
 }
 
 .recipeCardImage {
@@ -50,33 +50,4 @@
 .recipeDetailsButton {
   display: flex;
   justify-content: flex-end;
-}
-
-@media only screen and (max-width: 700px) {
-  .recipeCardContainer {
-  }
-
-  .recipeCardImage {
-  }
-
-  .recipeCardBody {
-  }
-
-  .recipeCardButton {
-  }
-
-  .recipeCardTitle {
-  }
-
-  .recipeCardSubtitle {
-  }
-
-  .recipeCardText {
-  }
-
-  .recipeCardTitleRating {
-  }
-
-  .recipeDetailsButton {
-  }
 }

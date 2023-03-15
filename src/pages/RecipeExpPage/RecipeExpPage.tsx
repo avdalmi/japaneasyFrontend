@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import { useEffect } from "react";
+
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { selectCategories, selectRecipe } from "../../store/recipes/slice";
 import {
   fetchAllRecipesThunk,
   getCategories,
 } from "../../store/recipes/thunks";
-import Filter from "../../components/Filter/Filter";
-import Loading from "../../components/Loading/Loading";
+import { SearchBar, Filter, Loading } from "../../components";
 import * as loadingNoodles from "../../components/Loading/39520-japanese-noodles.json";
+
 const RecipeExpPage = () => {
   const dispatch = useAppDispatch();
   const recipes = useAppSelector(selectRecipe);

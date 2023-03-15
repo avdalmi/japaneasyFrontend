@@ -1,6 +1,9 @@
-import { useAppDispatch } from "../../hooks";
 import { useNavigate } from "react-router";
+
+import { useAppDispatch } from "../../hooks";
+
 import { logOutSuccess } from "../../store/user/slice";
+
 import Button from "react-bootstrap/Button";
 
 const LoggedIn: React.FC = () => {

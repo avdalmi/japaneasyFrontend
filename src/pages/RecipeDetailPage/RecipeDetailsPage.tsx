@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getRecipeById } from "../../store/recipes/thunks";
-import { useParams } from "react-router-dom";
 import { selectFullRecipe } from "../../store/recipes/slice";
-import { CompleteRecipeState } from "../../types/Recipes";
-import RecipeDetails from "../../components/RecipeDetails/RecipeDetails";
+import { CompleteRecipeState } from "../../types";
+import { RecipeDetails, Loading } from "../../components";
 import loadingNoodles from "../../components/Loading/39520-japanese-noodles.json";
-import Loading from "../../components/Loading/Loading";
 
 const RecipeDetailsPage: React.FC = () => {
   const dispatch = useAppDispatch();
