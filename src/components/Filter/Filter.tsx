@@ -38,11 +38,11 @@ const Filter = (props: FilterProps) => {
 
   useEffect(() => {
     getCategoryFilterState();
-  }, [categories]);
+  });
 
   useEffect(() => {
     getDifficultyFilterState();
-  }, []);
+  }); //
 
   const getCategoryFilterState = () => {
     const stateObject = categories.map((category) => {
@@ -123,7 +123,7 @@ const Filter = (props: FilterProps) => {
     }
     categoryFilterSettings.map((filterState: FilterState) => {
       if (filterState.id === category.id) {
-        filterValue = filterState.filtered;
+        return (filterValue = filterState.filtered);
       }
     });
     return filterValue;
@@ -136,7 +136,7 @@ const Filter = (props: FilterProps) => {
     }
     difficultyFilterSettings.map((filterState: DifficultyFilterState) => {
       if (filterState.id === difficulty.id) {
-        filterValue = filterState.filtered;
+        return (filterValue = filterState.filtered);
       }
     });
     return filterValue;
@@ -172,7 +172,9 @@ const Filter = (props: FilterProps) => {
         if (id === rec.categoryId) {
           return true;
         }
+        return;
       });
+
       const difficultyState = difficultyFilterSettings.find(({ level }) => {
         if (level === rec.difficulty) {
           return true;
@@ -201,6 +203,7 @@ const Filter = (props: FilterProps) => {
           id={rec.id}
         />
       );
+      return;
     });
     return recipe;
   };
