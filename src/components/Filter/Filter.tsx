@@ -138,6 +138,7 @@ const Filter = (props: FilterProps) => {
       if (filterState.id === difficulty.id) {
         return (filterValue = filterState.filtered);
       }
+      return;
     });
     return filterValue;
   };

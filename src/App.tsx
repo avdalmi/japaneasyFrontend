@@ -36,11 +36,11 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <div className="App">
+      {/* <div className="App">
         <header className="App-header">
           <button onClick={callApi}>Call API</button>
         </header>
-      </div>
+      </div> */}
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<LoginPage />} />
