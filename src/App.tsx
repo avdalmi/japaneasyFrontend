@@ -28,9 +28,19 @@ function App() {
     dispatch(getUserWithStoredToken());
   }, [dispatch]);
 
+  function callApi() {
+    fetch("https://japaneasy.herokuapp.com/", { method: "GET" })
+      .then((data) => data.json())
+      .then((json) => alert(JSON.stringify(json)));
+  }
   return (
     <div className="App">
       <NavBar />
+      <div className="App">
+        <header className="App-header">
+          <button onClick={callApi}>Call API</button>
+        </header>
+      </div>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<LoginPage />} />
